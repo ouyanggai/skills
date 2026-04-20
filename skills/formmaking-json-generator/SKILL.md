@@ -18,9 +18,11 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - 生成或修 JSON 前，先读 [references/formmaking-json-rules.md](references/formmaking-json-rules.md)。
 - 需求来源是 Word、截图、PDF 截图或“照这个表做”时，先读 [references/word-source-conversion.md](references/word-source-conversion.md)；如果是 `.docx`，先运行 [scripts/inspect_docx_tables.py](scripts/inspect_docx_tables.py) 提取表格台账。
 - 需求里有明显布局要求、截图仿制、打印式表单或复杂分区时，再读 [references/layout-and-common-patterns.md](references/layout-and-common-patterns.md)。
+- 用户觉得“布局像了但样式、宽度、审批区还是不像现网”时，再读 [references/style-and-approval-patterns.md](references/style-and-approval-patterns.md)。
 - 需求涉及宿主自定义组件时，再读 [references/host-custom-components.md](references/host-custom-components.md)。
 - 需要找最接近的真实样本时，再读 [references/sample-index.md](references/sample-index.md)。
 - 生成完成后，优先用 [scripts/validate_form_json.py](scripts/validate_form_json.py) 校验。
+- 需要重新从一批 raw 样本学习壳层/样式/审批区规律时，运行 [scripts/analyze_sample_patterns.py](scripts/analyze_sample_patterns.py)。
 
 ## 本地上下文
 

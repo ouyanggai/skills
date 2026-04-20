@@ -52,6 +52,17 @@
 - `analysis/form-proxy-samples/raw/费用报销单-无归口_expense_budget_noBelong.json`
   适合学习费用类表单里的事件脚本组织方式。
 
+### 样式/审批区优先
+
+- `analysis/form-proxy-samples/raw/人员招聘审批表_person_recruit_approval.json`
+  适合学习 `900px + bord newFormMaking + 5x2 审批意见区 + 分区标题样式`。
+- `analysis/form-proxy-samples/raw/员工流动审批表_employee_turnover_approval_form.json`
+  适合学习多个顶层 `report` 串联的长审批链、固定壳层宽度和审批角色排布。
+- `analysis/form-proxy-samples/raw/干部选拔报名表_enterprise.json`
+  适合学习 `900px + newFormMaking` 的较轻壳层、长文本区和标题/副标题控制。
+- `analysis/form-proxy-samples/raw/内部选拔实施申请表_enterprise.json`
+  适合学习 Word 制式单转 JSON 后最容易踩的坑：固定重复区、审批意见区、选择控件和 styleSheets 微调。
+
 ### 自定义组件密集型
 
 - `analysis/form-proxy-samples/raw/公司合同盖章评审_contract_seal_review.json`
@@ -65,6 +76,8 @@
   `report` 和 `table` 很重，适合看制式表格布局。
 - `analysis/form-proxy-samples/raw/人员增补审批表_personnel_addition_approval_form.json`
   适合学习 `subform` 与组织选择组件组合。
+- `analysis/form-proxy-samples/raw/固定资产购置申请表_assets_buy_apply.json`
+  适合学习单个顶层大 `report` 里再承载局部明细和复杂事件脚本。
 
 ### 文件导入/业务附件型
 
@@ -76,6 +89,7 @@
 - 要做费用、差旅、请款类表单：优先比对 `travel_expense`、`request_funds`、`expense_budget_noBelong`
 - 要做合同类表单：优先比对 `contract_seal_review`、`contract_compliance_review`、`contract_invoicing`
 - 要做组织/人员变动类表单：优先比对 `personnel_addition_approval_form`
+- 要做人资/招聘/选拔/员工流动类表单：优先比对 `person_recruit_approval`、`employee_turnover_approval_form`、`enterprise`
 - 要做打印式工程或质检单据：优先比对 `quality_inspection`
 
 ## 5. 特征索引可直接利用
@@ -88,5 +102,11 @@
 - `table_heavy`
 - `subform_cases`
 - `fileupload_cases`
+
+如果要重新从当前 raw 样本学习“壳层宽度 / class / styleSheets / 审批区”规律，直接运行：
+
+```bash
+python3 skills/formmaking-json-generator/scripts/analyze_sample_patterns.py --workspace .
+```
 
 生成 JSON 时，如果需求里出现明显特征，优先选同类样本做“近似迁移”，不要从零搭。

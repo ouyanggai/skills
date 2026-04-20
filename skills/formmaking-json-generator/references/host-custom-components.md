@@ -31,6 +31,12 @@
 - 零样本或极低频组件，不要主动发明用法
 - 这类选择组件大多把 `value` 当成 JSON 字符串处理；生成时优先给合法 JSON 默认值，不要直接留空字符串
 
+从 178 份 raw 样本继续抽出来的补充结论：
+
+- `custome-info-select`、`general-list-select-show`、`custome-select-project` 这类高频组件，大多不依赖 `customProps` / `extendProps`；先把 `model`、默认值、事件脚本和外层布局配对好更重要。
+- 强业务组件里，`legal-contract-doctable` 是少数稳定依赖 `extendProps` 的组件；没有现成业务上下文时不要主动选它。
+- 很多高频组件的 `name` 在样本里都很泛，例如“通用信息选择”“通用列表选择”，因此正式表单里的业务语义通常来自外层 `report` 标签或分区标题，而不是组件自身名称。
+
 ## 2. 选择顺序
 
 - 人员、部门、公司、岗位：先看 `custome-info-select`
@@ -75,6 +81,15 @@
 - 审批人
 - 合同主体公司
 
+raw 样本补充：
+
+- 145 个节点分布在 63 份样本里，是最稳的通用宿主组件。
+- 高频 `model`：
+  `handlingDepName`、`handlingUserName`、`handledUserName`、`myCompanyName`、`myUserName`、`contractUserName`、`contractDepName`、`contractCompanyName`
+- 高频 `name` 反而很泛：
+  “通用信息选择”最多，因此生成时不要照抄组件名当业务标签。
+- 常见会挂 `onFocus` / `onChange` 事件脚本；如果联动需求不明确，可以先不挂事件，只保留合法值结构。
+
 参考源码：
 
 - `{host_project}/src/components/Custom/components/CustomeInfoSelect/index.vue`
@@ -103,6 +118,14 @@
 - 手续文件选择
 - 单个流程对象关联
 
+raw 样本补充：
+
+- 31 个节点分布在 20 份样本里。
+- 高频 `model`：
+  `contractObj` 最常见，其次是若干业务流程对象字段。
+- 组件 `name` 基本都写成“通用列表选择”，说明业务标签通常由外层单元格提供。
+- 常见 `onChange` 事件会在选择对象后带出项目、金额、主体等信息；如果需求里出现“关联合同/流程后回填一组字段”，优先考虑它。
+
 参考源码：
 
 - `{host_project}/src/components/Custom/components/GeneralListSelectShow/index.vue`
@@ -123,6 +146,11 @@
 
 - `analysis/form-proxy-samples/raw/公司合同合规评审_contract_compliance_review.json`
 - `analysis/form-proxy-samples/raw/公司合同付款申请表类型_contract_payment_form_c44d202f6d3f4b659372ced254d6da4b.json`
+
+raw 样本补充：
+
+- 16 个节点，几乎都是 `project` / `projectName` / `selectProject` 这类直白 `model`。
+- 如果需求只是“项目名称”而且宿主存在真实项目对象，优先用它，不要退回纯输入框。
 
 ### `ltd-or-dep-select`
 
@@ -145,6 +173,11 @@
 - 部门范围
 - 多公司通知范围
 
+raw 样本补充：
+
+- 5 个节点里，`singleSelectCompany` 是最常见 `model`。
+- 该组件更偏“范围选择”，不是普通单人单岗选择，不要和 `custome-info-select` 混用。
+
 参考源码：
 
 - `{host_project}/src/components/Custom/components/LtdOrDepSelect/index.vue`
@@ -164,6 +197,11 @@
 
 - 关联多个差旅流程
 - 关联多个还款或费用流程
+
+raw 样本补充：
+
+- 6 个样本里 `model` 都是 `custom_flow_btn`，说明它更像一个业务按钮入口，不像普通字段。
+- 如果用户只是要普通“关联多个流程”，不一定首选它；先判断是不是费用/差旅/还款这类既有业务链条。
 
 参考源码：
 
@@ -202,6 +240,11 @@
 - 不是普通附件上传
 - 组件内部走固定业务接口，不要当成通用附件组件
 
+raw 样本补充：
+
+- 4 个样本里 `model` 都是 `importTemplate`，说明它更像“导入入口”而不是普通上传字段。
+- 如果需求只是上传附件，不要误用它，继续用标准 `fileupload`。
+
 参考源码：
 
 - `{host_project}/src/components/Custom/components/CustomeFileImport/index.vue`
@@ -231,6 +274,11 @@
 
 - `analysis/form-proxy-samples/raw/公司合同合规评审_contract_compliance_review.json`
 
+raw 样本补充：
+
+- 3 个样本全部带 `extendProps`，这是一个明显信号：
+  没有现成业务上下文时不要猜它的参数。
+
 ### `contract-seal-review-business`
 
 用途：
@@ -249,6 +297,11 @@
 优先参考：
 
 - `analysis/form-proxy-samples/raw/公司合同盖章评审_contract_seal_review.json`
+
+raw 样本补充：
+
+- 3 个样本里 `model` 固定为 `custom_contractSealField`，并且几乎不靠组件 `name` 表达业务语义。
+- 这是典型强业务块，不要当通用组件推广。
 
 ## 5. 低频或谨慎使用组件
 

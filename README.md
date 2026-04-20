@@ -59,6 +59,12 @@ python3 skills/formmaking-json-generator/scripts/validate_form_json.py --strict 
 python3 skills/formmaking-json-generator/scripts/inspect_docx_tables.py path/to/form.docx
 ```
 
+分析一批真实 raw 样本的宽度、壳层 class、styleSheets 和审批区模式：
+
+```bash
+python3 skills/formmaking-json-generator/scripts/analyze_sample_patterns.py --workspace .
+```
+
 ## 新环境首次使用
 
 第一次使用时，只需要告诉 `formmaking-json-generator` 三个目录：

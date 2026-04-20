@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.formmaking-json-generator/
+node_modules/
+dist/
+build/
+coverage/

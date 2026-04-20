@@ -1,0 +1,2668 @@
+{
+  "list": [
+    {
+      "type": "text",
+      "name": "合同变更评审表",
+      "key": "contract_change_review_title",
+      "model": "contract_change_review_title",
+      "rules": [],
+      "options": {
+        "defaultValue": "",
+        "customClass": "sub-title",
+        "labelWidth": "100%",
+        "isLabelWidth": false,
+        "hidden": false,
+        "dataBind": true,
+        "required": false,
+        "hideLabel": false,
+        "remoteFunc": "func_contract_change_review_title",
+        "remoteOption": "option_contract_change_review_title",
+        "tableColumn": false
+      },
+      "events": {
+        "onChange": ""
+      }
+    },
+    {
+      "type": "input",
+      "name": "单行文本",
+      "key": "origin_contract_sync_key",
+      "model": "originContractSyncKey",
+      "rules": [],
+      "options": {
+        "width": "100%",
+        "defaultValue": "",
+        "required": false,
+        "requiredMessage": "",
+        "dataType": "",
+        "dataTypeCheck": false,
+        "dataTypeMessage": "",
+        "pattern": "",
+        "patternCheck": false,
+        "patternMessage": "",
+        "validatorCheck": false,
+        "validator": "",
+        "placeholder": "",
+        "customClass": "cell-tight",
+        "hideLabel": true,
+        "disabled": true,
+        "labelWidth": 100,
+        "isLabelWidth": false,
+        "hidden": true,
+        "dataBind": true,
+        "showPassword": false,
+        "clearable": false,
+        "maxlength": "",
+        "showWordLimit": false,
+        "customProps": {},
+        "remoteFunc": "func_origin_contract_sync_key",
+        "remoteOption": "option_origin_contract_sync_key",
+        "tableColumn": false,
+        "subform": false,
+        "readonly": false
+      },
+      "events": {
+        "onChange": "",
+        "onFocus": "",
+        "onBlur": ""
+      }
+    },
+    {
+      "type": "input",
+      "name": "单行文本",
+      "key": "origin_contract_talk_way",
+      "model": "originContractTalkWay",
+      "rules": [],
+      "options": {
+        "width": "100%",
+        "defaultValue": "",
+        "required": false,
+        "requiredMessage": "",
+        "dataType": "",
+        "dataTypeCheck": false,
+        "dataTypeMessage": "",
+        "pattern": "",
+        "patternCheck": false,
+        "patternMessage": "",
+        "validatorCheck": false,
+        "validator": "",
+        "placeholder": "",
+        "customClass": "cell-tight",
+        "hideLabel": true,
+        "disabled": true,
+        "labelWidth": 100,
+        "isLabelWidth": false,
+        "hidden": true,
+        "dataBind": true,
+        "showPassword": false,
+        "clearable": false,
+        "maxlength": "",
+        "showWordLimit": false,
+        "customProps": {},
+        "remoteFunc": "func_origin_contract_talk_way",
+        "remoteOption": "option_origin_contract_talk_way",
+        "tableColumn": false,
+        "subform": false,
+        "readonly": false
+      },
+      "events": {
+        "onChange": "",
+        "onFocus": "",
+        "onBlur": ""
+      }
+    },
+    {
+      "type": "report",
+      "name": "表格布局",
+      "key": "report_contract_header",
+      "model": "report_contract_header",
+      "rules": [],
+      "options": {
+        "hidden": false,
+        "borderWidth": 1,
+        "borderColor": "#999",
+        "width": "100%",
+        "customClass": "report-block",
+        "remoteFunc": "func_report_contract_header",
+        "remoteOption": "option_report_contract_header"
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "key": "td_1",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同名称",
+                  "key": "label_contract_name",
+                  "model": "label_contract_name",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_contract_name",
+                    "remoteOption": "option_label_contract_name",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_2",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "contract_name",
+                  "model": "contractName",
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": "请输入合同名称"
+                    }
+                  ],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": true,
+                    "requiredMessage": "请输入合同名称",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "请输入合同名称",
+                    "customClass": "cell-tight",
+                    "hideLabel": true,
+                    "disabled": false,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_contract_name",
+                    "remoteOption": "option_contract_name",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_3",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同编号",
+                  "key": "label_contract_code",
+                  "model": "label_contract_code",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_contract_code",
+                    "remoteOption": "option_label_contract_code",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_4",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "contract_code",
+                  "model": "contractCode",
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": "请输入合同编号"
+                    }
+                  ],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": true,
+                    "requiredMessage": "请输入合同编号",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "请输入合同编号",
+                    "customClass": "cell-tight",
+                    "hideLabel": true,
+                    "disabled": false,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_contract_code",
+                    "remoteOption": "option_contract_code",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        }
+      ],
+      "headerRow": [
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_contract_header_1",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_contract_header_2",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_contract_header_3",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_contract_header_4",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_contract_header_5",
+          "rules": []
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "name": "表格布局",
+      "key": "report_origin_contract_info",
+      "model": "report_origin_contract_info",
+      "rules": [],
+      "options": {
+        "hidden": false,
+        "borderWidth": 1,
+        "borderColor": "#999",
+        "width": "100%",
+        "customClass": "report-block",
+        "remoteFunc": "func_report_origin_contract_info",
+        "remoteOption": "option_report_origin_contract_info"
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "key": "td_5",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "原合同信息",
+                  "key": "label_origin_section",
+                  "model": "label_origin_section",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "section-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_section",
+                    "remoteOption": "option_label_origin_section",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "center",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 4,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_6",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "关联合同",
+                  "key": "label_origin_contract_selector",
+                  "model": "label_origin_contract_selector",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_contract_selector",
+                    "remoteOption": "option_label_origin_contract_selector",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_7",
+              "list": [
+                {
+                  "type": "custom",
+                  "name": "自定义组件",
+                  "key": "origin_contract_obj",
+                  "model": "originContractObj",
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": "请选择原合同"
+                    },
+                    {
+                      "func": "try {\n  const parsed = value ? JSON.parse(value) : {};\n  if (parsed && parsed.id) {\n    callback();\n  } else {\n    callback('请选择原合同');\n  }\n} catch (error) {\n  callback('请选择原合同');\n}"
+                    }
+                  ],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "{}",
+                    "required": true,
+                    "requiredMessage": "请选择原合同",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": true,
+                    "validator": "try {\n  const parsed = value ? JSON.parse(value) : {};\n  if (parsed && parsed.id) {\n    callback();\n  } else {\n    callback('请选择原合同');\n  }\n} catch (error) {\n  callback('请选择原合同');\n}",
+                    "placeholder": "请选择原合同",
+                    "customClass": "cell-tight",
+                    "hideLabel": true,
+                    "disabled": false,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "extendProps": {},
+                    "isCustome": true,
+                    "remoteFunc": "func_origin_contract_obj",
+                    "remoteOption": "option_origin_contract_obj",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": "onChange_origin_contract_obj",
+                    "onFocus": "",
+                    "onBlur": ""
+                  },
+                  "el": "general-list-select-show"
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_8",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "项目名称",
+                  "key": "label_origin_project_name",
+                  "model": "label_origin_project_name",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_project_name",
+                    "remoteOption": "option_label_origin_project_name",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_9",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "origin_project_name",
+                  "model": "originProjectName",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "",
+                    "customClass": "display-disabled cell-tight",
+                    "hideLabel": true,
+                    "disabled": true,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_origin_project_name",
+                    "remoteOption": "option_origin_project_name",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_10",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同主体",
+                  "key": "label_origin_subject",
+                  "model": "label_origin_subject",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_subject",
+                    "remoteOption": "option_label_origin_subject",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_11",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "origin_contract_subject",
+                  "model": "originContractSubject",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "",
+                    "customClass": "display-disabled cell-tight",
+                    "hideLabel": true,
+                    "disabled": true,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_origin_contract_subject",
+                    "remoteOption": "option_origin_contract_subject",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_12",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同分类",
+                  "key": "label_origin_category",
+                  "model": "label_origin_category",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_category",
+                    "remoteOption": "option_label_origin_category",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_13",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "origin_contract_category",
+                  "model": "originContractCategory",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "",
+                    "customClass": "display-disabled cell-tight",
+                    "hideLabel": true,
+                    "disabled": true,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_origin_contract_category",
+                    "remoteOption": "option_origin_contract_category",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        }
+      ],
+      "headerRow": [
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_origin_contract_info_1",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_origin_contract_info_2",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_origin_contract_info_3",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_origin_contract_info_4",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_origin_contract_info_5",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_origin_contract_info_6",
+          "rules": []
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "name": "表格布局",
+      "key": "report_changed_contract_info",
+      "model": "report_changed_contract_info",
+      "rules": [],
+      "options": {
+        "hidden": false,
+        "borderWidth": 1,
+        "borderColor": "#999",
+        "width": "100%",
+        "customClass": "report-block",
+        "remoteFunc": "func_report_changed_contract_info",
+        "remoteOption": "option_report_changed_contract_info"
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "key": "td_14",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "变更后合同信息",
+                  "key": "label_changed_section",
+                  "model": "label_changed_section",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "section-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_changed_section",
+                    "remoteOption": "option_label_changed_section",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "center",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 4,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_15",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同主体",
+                  "key": "label_main_body",
+                  "model": "label_main_body",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_main_body",
+                    "remoteOption": "option_label_main_body",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_22",
+              "list": [
+                {
+                  "type": "radio",
+                  "name": "单选框组",
+                  "key": "main_body_radio",
+                  "model": "mainBodyRadio",
+                  "rules": [],
+                  "options": {
+                    "inline": true,
+                    "defaultValue": "手动填写",
+                    "showLabel": false,
+                    "options": [
+                      {
+                        "value": "手动填写",
+                        "label": "手动填写"
+                      },
+                      {
+                        "value": "相关方",
+                        "label": "相关方"
+                      }
+                    ],
+                    "required": false,
+                    "requiredMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "width": "",
+                    "remote": false,
+                    "remoteType": "datasource",
+                    "remoteOption": "option_main_body_radio",
+                    "remoteOptions": [],
+                    "props": {
+                      "value": "value",
+                      "label": "label"
+                    },
+                    "remoteFunc": "func_main_body_radio",
+                    "customClass": "cell-tight",
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "disabled": false,
+                    "customProps": {},
+                    "tableColumn": false,
+                    "hideLabel": true,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": "onChange_main_body_radio"
+                  }
+                },
+                {
+                  "type": "subform",
+                  "name": "子表单+",
+                  "key": "main_body_subform",
+                  "model": "mainBodySubform",
+                  "rules": [
+                    {
+                      "func": "let currentMode = this.getValue('mainBodyRadio');\nif (currentMode !== '手动填写') { callback(); return; }\nif (!Array.isArray(value) || value.length === 0) { callback('请填写合同主体'); return; }\nfor (let index = 0; index < value.length; index += 1) {\n  let row = value[index] || {};\n  if (!row.partyType || !row.partyName) {\n    callback('请填写完整的合同主体信息');\n    return;\n  }\n}\ncallback();"
+                    }
+                  ],
+                  "options": {
+                    "defaultValue": [
+                      {
+                        "partyType": "甲方",
+                        "partyName": ""
+                      },
+                      {
+                        "partyType": "乙方",
+                        "partyName": ""
+                      }
+                    ],
+                    "customClass": "tableNoPadding",
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "disabled": false,
+                    "required": false,
+                    "validatorCheck": true,
+                    "validator": "let currentMode = this.getValue('mainBodyRadio');\nif (currentMode !== '手动填写') { callback(); return; }\nif (!Array.isArray(value) || value.length === 0) { callback('请填写合同主体'); return; }\nfor (let index = 0; index < value.length; index += 1) {\n  let row = value[index] || {};\n  if (!row.partyType || !row.partyName) {\n    callback('请填写完整的合同主体信息');\n    return;\n  }\n}\ncallback();",
+                    "paging": false,
+                    "pageSize": 5,
+                    "showControl": true,
+                    "isAdd": true,
+                    "isDelete": true,
+                    "remoteFunc": "func_main_body_subform",
+                    "remoteOption": "option_main_body_subform",
+                    "tableColumn": false,
+                    "hideLabel": true,
+                    "subform": false,
+                    "requiredMessage": "请输入"
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onRowAdd": "",
+                    "onRowRemove": "",
+                    "onPageChange": ""
+                  },
+                  "list": [
+                    {
+                      "type": "report",
+                      "name": "表格布局",
+                      "key": "report_main_body_subform",
+                      "model": "report_main_body_subform",
+                      "rules": [],
+                      "options": {
+                        "hidden": false,
+                        "borderWidth": 1,
+                        "borderColor": "#999",
+                        "width": "100%",
+                        "customClass": "report-block",
+                        "remoteFunc": "func_report_main_body_subform",
+                        "remoteOption": "option_report_main_body_subform"
+                      },
+                      "rows": [
+                        {
+                          "columns": [
+                            {
+                              "key": "td_16",
+                              "list": [
+                                {
+                                  "type": "select",
+                                  "name": "下拉选择框",
+                                  "key": "main_body_party_type",
+                                  "model": "partyType",
+                                  "rules": [],
+                                  "options": {
+                                    "defaultValue": "甲方",
+                                    "multiple": false,
+                                    "disabled": false,
+                                    "clearable": false,
+                                    "placeholder": "",
+                                    "required": false,
+                                    "requiredMessage": "",
+                                    "validatorCheck": false,
+                                    "validator": "",
+                                    "showLabel": false,
+                                    "width": "100%",
+                                    "options": [
+                                      {
+                                        "value": "甲方",
+                                        "label": "甲方"
+                                      },
+                                      {
+                                        "value": "乙方",
+                                        "label": "乙方"
+                                      },
+                                      {
+                                        "value": "丙方",
+                                        "label": "丙方"
+                                      },
+                                      {
+                                        "value": "丁方",
+                                        "label": "丁方"
+                                      }
+                                    ],
+                                    "remote": false,
+                                    "remoteType": "datasource",
+                                    "remoteOption": "option_main_body_party_type",
+                                    "filterable": false,
+                                    "remoteOptions": [],
+                                    "props": {
+                                      "value": "value",
+                                      "label": "label"
+                                    },
+                                    "remoteFunc": "func_main_body_party_type",
+                                    "customClass": "cell-tight",
+                                    "labelWidth": 100,
+                                    "isLabelWidth": false,
+                                    "hidden": false,
+                                    "dataBind": true,
+                                    "customProps": {},
+                                    "tableColumn": false,
+                                    "hideLabel": true,
+                                    "subform": true
+                                  },
+                                  "events": {
+                                    "onChange": "",
+                                    "onFocus": "",
+                                    "onBlur": ""
+                                  }
+                                }
+                              ],
+                              "type": "td",
+                              "options": {
+                                "align": "left",
+                                "width": "140px",
+                                "height": "",
+                                "valign": "top",
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "customClass": ""
+                              },
+                              "rules": []
+                            },
+                            {
+                              "key": "td_17",
+                              "list": [
+                                {
+                                  "type": "input",
+                                  "name": "单行文本",
+                                  "key": "main_body_party_name",
+                                  "model": "partyName",
+                                  "rules": [],
+                                  "options": {
+                                    "width": "100%",
+                                    "defaultValue": "",
+                                    "required": false,
+                                    "requiredMessage": "",
+                                    "dataType": "",
+                                    "dataTypeCheck": false,
+                                    "dataTypeMessage": "",
+                                    "pattern": "",
+                                    "patternCheck": false,
+                                    "patternMessage": "",
+                                    "validatorCheck": false,
+                                    "validator": "",
+                                    "placeholder": "请输入合同主体名称",
+                                    "customClass": "cell-tight",
+                                    "hideLabel": true,
+                                    "disabled": false,
+                                    "labelWidth": 100,
+                                    "isLabelWidth": false,
+                                    "hidden": false,
+                                    "dataBind": true,
+                                    "showPassword": false,
+                                    "clearable": false,
+                                    "maxlength": "",
+                                    "showWordLimit": false,
+                                    "customProps": {},
+                                    "remoteFunc": "func_main_body_party_name",
+                                    "remoteOption": "option_main_body_party_name",
+                                    "tableColumn": false,
+                                    "subform": true,
+                                    "readonly": false
+                                  },
+                                  "events": {
+                                    "onChange": "",
+                                    "onFocus": "",
+                                    "onBlur": ""
+                                  }
+                                }
+                              ],
+                              "type": "td",
+                              "options": {
+                                "align": "left",
+                                "width": "",
+                                "height": "",
+                                "valign": "top",
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "customClass": ""
+                              },
+                              "rules": []
+                            }
+                          ]
+                        }
+                      ],
+                      "headerRow": [
+                        {
+                          "type": "th",
+                          "options": {
+                            "width": "140px"
+                          },
+                          "key": "th_report_main_body_subform_1",
+                          "rules": []
+                        },
+                        {
+                          "type": "th",
+                          "options": {
+                            "width": ""
+                          },
+                          "key": "th_report_main_body_subform_2",
+                          "rules": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "report",
+                  "name": "表格布局",
+                  "key": "relatePartyReport",
+                  "model": "relatePartyReport",
+                  "rules": [],
+                  "options": {
+                    "hidden": true,
+                    "borderWidth": 1,
+                    "borderColor": "#999",
+                    "width": "100%",
+                    "customClass": "report-block",
+                    "remoteFunc": "func_relatePartyReport",
+                    "remoteOption": "option_relatePartyReport"
+                  },
+                  "rows": [
+                    {
+                      "columns": [
+                        {
+                          "key": "td_18",
+                          "list": [
+                            {
+                              "type": "text",
+                              "name": "甲方",
+                              "key": "label_relate_party_a",
+                              "model": "label_relate_party_a",
+                              "rules": [],
+                              "options": {
+                                "defaultValue": "",
+                                "customClass": "cell-label left-label",
+                                "labelWidth": "100%",
+                                "isLabelWidth": false,
+                                "hidden": false,
+                                "dataBind": true,
+                                "required": false,
+                                "hideLabel": false,
+                                "remoteFunc": "func_label_relate_party_a",
+                                "remoteOption": "option_label_relate_party_a",
+                                "tableColumn": false,
+                                "subform": false
+                              },
+                              "events": {
+                                "onChange": ""
+                              }
+                            }
+                          ],
+                          "type": "td",
+                          "options": {
+                            "align": "left",
+                            "width": "140px",
+                            "height": "",
+                            "valign": "top",
+                            "colspan": 1,
+                            "rowspan": 1,
+                            "customClass": ""
+                          },
+                          "rules": []
+                        },
+                        {
+                          "key": "td_19",
+                          "list": [
+                            {
+                              "type": "select",
+                              "name": "下拉选择框",
+                              "key": "main_body_relate_a",
+                              "model": "mainBodyRelateA",
+                              "rules": [
+                                {
+                                  "func": "let currentMode = this.getValue('mainBodyRadio');\nif (currentMode !== '相关方') { callback(); return; }\nif (!value) { callback('请选择相关方'); return; }\ncallback();"
+                                }
+                              ],
+                              "options": {
+                                "defaultValue": "",
+                                "multiple": false,
+                                "disabled": false,
+                                "clearable": false,
+                                "placeholder": "",
+                                "required": false,
+                                "requiredMessage": "",
+                                "validatorCheck": true,
+                                "validator": "let currentMode = this.getValue('mainBodyRadio');\nif (currentMode !== '相关方') { callback(); return; }\nif (!value) { callback('请选择相关方'); return; }\ncallback();",
+                                "showLabel": false,
+                                "width": "100%",
+                                "options": [],
+                                "remote": true,
+                                "remoteType": "datasource",
+                                "remoteOption": "option_main_body_relate_a",
+                                "filterable": false,
+                                "remoteOptions": [],
+                                "props": {
+                                  "value": "id",
+                                  "label": "name"
+                                },
+                                "remoteFunc": "func_main_body_relate_a",
+                                "customClass": "cell-tight",
+                                "labelWidth": 100,
+                                "isLabelWidth": false,
+                                "hidden": false,
+                                "dataBind": true,
+                                "customProps": {},
+                                "tableColumn": false,
+                                "hideLabel": true,
+                                "subform": false,
+                                "remoteDataSource": "related_party_data_source",
+                                "remoteArgs": {}
+                              },
+                              "events": {
+                                "onChange": "",
+                                "onFocus": "",
+                                "onBlur": ""
+                              }
+                            }
+                          ],
+                          "type": "td",
+                          "options": {
+                            "align": "left",
+                            "width": "",
+                            "height": "",
+                            "valign": "top",
+                            "colspan": 1,
+                            "rowspan": 1,
+                            "customClass": ""
+                          },
+                          "rules": []
+                        }
+                      ]
+                    },
+                    {
+                      "columns": [
+                        {
+                          "key": "td_20",
+                          "list": [
+                            {
+                              "type": "text",
+                              "name": "乙方",
+                              "key": "label_relate_party_b",
+                              "model": "label_relate_party_b",
+                              "rules": [],
+                              "options": {
+                                "defaultValue": "",
+                                "customClass": "cell-label left-label",
+                                "labelWidth": "100%",
+                                "isLabelWidth": false,
+                                "hidden": false,
+                                "dataBind": true,
+                                "required": false,
+                                "hideLabel": false,
+                                "remoteFunc": "func_label_relate_party_b",
+                                "remoteOption": "option_label_relate_party_b",
+                                "tableColumn": false,
+                                "subform": false
+                              },
+                              "events": {
+                                "onChange": ""
+                              }
+                            }
+                          ],
+                          "type": "td",
+                          "options": {
+                            "align": "left",
+                            "width": "140px",
+                            "height": "",
+                            "valign": "top",
+                            "colspan": 1,
+                            "rowspan": 1,
+                            "customClass": ""
+                          },
+                          "rules": []
+                        },
+                        {
+                          "key": "td_21",
+                          "list": [
+                            {
+                              "type": "select",
+                              "name": "下拉选择框",
+                              "key": "main_body_relate_b",
+                              "model": "mainBodyRelateB",
+                              "rules": [
+                                {
+                                  "func": "let currentMode = this.getValue('mainBodyRadio');\nif (currentMode !== '相关方') { callback(); return; }\nif (!value) { callback('请选择相关方'); return; }\ncallback();"
+                                }
+                              ],
+                              "options": {
+                                "defaultValue": "",
+                                "multiple": false,
+                                "disabled": false,
+                                "clearable": false,
+                                "placeholder": "",
+                                "required": false,
+                                "requiredMessage": "",
+                                "validatorCheck": true,
+                                "validator": "let currentMode = this.getValue('mainBodyRadio');\nif (currentMode !== '相关方') { callback(); return; }\nif (!value) { callback('请选择相关方'); return; }\ncallback();",
+                                "showLabel": false,
+                                "width": "100%",
+                                "options": [],
+                                "remote": true,
+                                "remoteType": "datasource",
+                                "remoteOption": "option_main_body_relate_b",
+                                "filterable": false,
+                                "remoteOptions": [],
+                                "props": {
+                                  "value": "id",
+                                  "label": "name"
+                                },
+                                "remoteFunc": "func_main_body_relate_b",
+                                "customClass": "cell-tight",
+                                "labelWidth": 100,
+                                "isLabelWidth": false,
+                                "hidden": false,
+                                "dataBind": true,
+                                "customProps": {},
+                                "tableColumn": false,
+                                "hideLabel": true,
+                                "subform": false,
+                                "remoteDataSource": "related_party_data_source",
+                                "remoteArgs": {}
+                              },
+                              "events": {
+                                "onChange": "",
+                                "onFocus": "",
+                                "onBlur": ""
+                              }
+                            }
+                          ],
+                          "type": "td",
+                          "options": {
+                            "align": "left",
+                            "width": "",
+                            "height": "",
+                            "valign": "top",
+                            "colspan": 1,
+                            "rowspan": 1,
+                            "customClass": ""
+                          },
+                          "rules": []
+                        }
+                      ]
+                    }
+                  ],
+                  "headerRow": [
+                    {
+                      "type": "th",
+                      "options": {
+                        "width": "140px"
+                      },
+                      "key": "th_relatePartyReport_1",
+                      "rules": []
+                    },
+                    {
+                      "type": "th",
+                      "options": {
+                        "width": ""
+                      },
+                      "key": "th_relatePartyReport_2",
+                      "rules": []
+                    }
+                  ]
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_23",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同谈判方式",
+                  "key": "label_contract_talk",
+                  "model": "label_contract_talk",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_contract_talk",
+                    "remoteOption": "option_label_contract_talk",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_24",
+              "list": [
+                {
+                  "type": "radio",
+                  "name": "单选框组",
+                  "key": "contract_talk",
+                  "model": "contractTalk",
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": "请选择合同谈判方式"
+                    },
+                    {
+                      "func": "if (!value) {\n  callback('请选择合同谈判方式');\n} else {\n  callback();\n}"
+                    }
+                  ],
+                  "options": {
+                    "inline": true,
+                    "defaultValue": "",
+                    "showLabel": false,
+                    "options": [
+                      {
+                        "value": "公开招标",
+                        "label": "公开招标"
+                      },
+                      {
+                        "value": "非公开挂网",
+                        "label": "非公开挂网"
+                      },
+                      {
+                        "value": "非挂网方式",
+                        "label": "非挂网方式"
+                      },
+                      {
+                        "value": "直签",
+                        "label": "直签"
+                      },
+                      {
+                        "value": "单一来源采购",
+                        "label": "单一来源采购"
+                      },
+                      {
+                        "value": "内部采购",
+                        "label": "内部采购"
+                      },
+                      {
+                        "value": "框采",
+                        "label": "框采"
+                      },
+                      {
+                        "value": "其他",
+                        "label": "其他"
+                      }
+                    ],
+                    "required": true,
+                    "requiredMessage": "请选择合同谈判方式",
+                    "validatorCheck": true,
+                    "validator": "if (!value) {\n  callback('请选择合同谈判方式');\n} else {\n  callback();\n}",
+                    "width": "",
+                    "remote": false,
+                    "remoteType": "datasource",
+                    "remoteOption": "option_contract_talk",
+                    "remoteOptions": [],
+                    "props": {
+                      "value": "value",
+                      "label": "label"
+                    },
+                    "remoteFunc": "func_contract_talk",
+                    "customClass": "cell-tight",
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "disabled": false,
+                    "customProps": {},
+                    "tableColumn": false,
+                    "hideLabel": true,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_25",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同变更内容",
+                  "key": "label_contract_change_content",
+                  "model": "label_contract_change_content",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_contract_change_content",
+                    "remoteOption": "option_label_contract_change_content",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_26",
+              "list": [
+                {
+                  "type": "textarea",
+                  "name": "多行文本",
+                  "key": "contract_change_content",
+                  "model": "contractChangeContent",
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": "请输入合同变更内容"
+                    }
+                  ],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": true,
+                    "requiredMessage": "请输入合同变更内容",
+                    "disabled": false,
+                    "pattern": "",
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "请输入合同变更内容",
+                    "customClass": "cell-tight",
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "clearable": false,
+                    "maxlength": 1000,
+                    "showWordLimit": true,
+                    "rows": 5,
+                    "autosize": false,
+                    "customProps": {},
+                    "hideLabel": true,
+                    "readonly": false,
+                    "tableColumn": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_27",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "合同文件",
+                  "key": "label_contract_file_list",
+                  "model": "label_contract_file_list",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_contract_file_list",
+                    "remoteOption": "option_label_contract_file_list",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_28",
+              "list": [
+                {
+                  "type": "fileupload",
+                  "name": "文件上传",
+                  "key": "contract_file_list",
+                  "model": "contractFileList",
+                  "rules": [
+                    {
+                      "func": "if (!value || value.length === 0) { callback('请上传合同文件'); } else { callback(); }"
+                    }
+                  ],
+                  "options": {
+                    "defaultValue": [],
+                    "width": "",
+                    "tokenFunc": "funcGetToken",
+                    "token": "",
+                    "tokenType": "datasource",
+                    "domain": "",
+                    "disabled": false,
+                    "tip": "允许上传多个文件",
+                    "action": "/api/web/file/api/file/uploadFile",
+                    "customClass": "cell-tight upload-cell",
+                    "limit": 9,
+                    "multiple": true,
+                    "isQiniu": false,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "headers": [],
+                    "required": true,
+                    "requiredMessage": "请上传合同文件",
+                    "validatorCheck": true,
+                    "validator": "if (!value || value.length === 0) { callback('请上传合同文件'); } else { callback(); }",
+                    "withCredentials": false,
+                    "remoteFunc": "func_contract_file_list",
+                    "remoteOption": "option_contract_file_list",
+                    "tableColumn": false,
+                    "hideLabel": true,
+                    "subform": false,
+                    "customProps": {}
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onSelect": "",
+                    "onUploadSuccess": "",
+                    "onUploadError": "",
+                    "onRemove": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        }
+      ],
+      "headerRow": [
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_changed_contract_info_1",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_changed_contract_info_2",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_changed_contract_info_3",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_changed_contract_info_4",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_changed_contract_info_5",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_changed_contract_info_6",
+          "rules": []
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "name": "表格布局",
+      "key": "report_change_description",
+      "model": "report_change_description",
+      "rules": [],
+      "options": {
+        "hidden": false,
+        "borderWidth": 1,
+        "borderColor": "#999",
+        "width": "100%",
+        "customClass": "report-block",
+        "remoteFunc": "func_report_change_description",
+        "remoteOption": "option_report_change_description"
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "key": "td_29",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "变更情况说明",
+                  "key": "label_change_description",
+                  "model": "label_change_description",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_change_description",
+                    "remoteOption": "option_label_change_description",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_30",
+              "list": [
+                {
+                  "type": "textarea",
+                  "name": "多行文本",
+                  "key": "change_description",
+                  "model": "changeDescription",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "disabled": false,
+                    "pattern": "",
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "请输入变更情况说明",
+                    "customClass": "cell-tight",
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "clearable": false,
+                    "maxlength": 1000,
+                    "showWordLimit": true,
+                    "rows": 4,
+                    "autosize": false,
+                    "customProps": {},
+                    "hideLabel": true,
+                    "readonly": false,
+                    "tableColumn": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 4,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        }
+      ],
+      "headerRow": [
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_change_description_1",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_change_description_2",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_change_description_3",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_change_description_4",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_change_description_5",
+          "rules": []
+        }
+      ]
+    },
+    {
+      "type": "report",
+      "name": "表格布局",
+      "key": "report_amount_info",
+      "model": "report_amount_info",
+      "rules": [],
+      "options": {
+        "hidden": false,
+        "borderWidth": 1,
+        "borderColor": "#999",
+        "width": "100%",
+        "customClass": "report-block",
+        "remoteFunc": "func_report_amount_info",
+        "remoteOption": "option_report_amount_info"
+      },
+      "rows": [
+        {
+          "columns": [
+            {
+              "key": "td_31",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "原合同金额（元）",
+                  "key": "label_origin_amount",
+                  "model": "label_origin_amount",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_amount",
+                    "remoteOption": "option_label_origin_amount",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_32",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "origin_contract_amount",
+                  "model": "originContractAmount",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "",
+                    "customClass": "display-disabled cell-tight",
+                    "hideLabel": true,
+                    "disabled": true,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_origin_contract_amount",
+                    "remoteOption": "option_origin_contract_amount",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 2,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_33",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "大写",
+                  "key": "label_origin_amount_upper",
+                  "model": "label_origin_amount_upper",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_origin_amount_upper",
+                    "remoteOption": "option_label_origin_amount_upper",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_34",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "origin_contract_amount_upper",
+                  "model": "originContractAmountUpper",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "",
+                    "customClass": "display-disabled cell-tight",
+                    "hideLabel": true,
+                    "disabled": true,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_origin_contract_amount_upper",
+                    "remoteOption": "option_origin_contract_amount_upper",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        },
+        {
+          "columns": [
+            {
+              "key": "td_35",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "变更后合同金额（元）",
+                  "key": "label_changed_amount",
+                  "model": "label_changed_amount",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label showRedPot",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_changed_amount",
+                    "remoteOption": "option_label_changed_amount",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_36",
+              "list": [
+                {
+                  "type": "number",
+                  "name": "计数器",
+                  "key": "changed_contract_amount",
+                  "model": "changedContractAmount",
+                  "rules": [
+                    {
+                      "required": true,
+                      "message": "请输入变更后合同金额"
+                    }
+                  ],
+                  "options": {
+                    "defaultValue": "",
+                    "min": 0,
+                    "max": 999999999,
+                    "precision": 2,
+                    "step": 1,
+                    "controls": true,
+                    "controlsPosition": "",
+                    "disabled": false,
+                    "required": true,
+                    "requiredMessage": "请输入变更后合同金额",
+                    "width": "100%",
+                    "customClass": "cell-tight",
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "hideLabel": true,
+                    "placeholder": "",
+                    "tableColumn": false
+                  },
+                  "events": {
+                    "onChange": "onChange_changed_contract_amount",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 2,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_37",
+              "list": [
+                {
+                  "type": "text",
+                  "name": "大写",
+                  "key": "label_changed_amount_upper",
+                  "model": "label_changed_amount_upper",
+                  "rules": [],
+                  "options": {
+                    "defaultValue": "",
+                    "customClass": "cell-label",
+                    "labelWidth": "100%",
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "required": false,
+                    "hideLabel": false,
+                    "remoteFunc": "func_label_changed_amount_upper",
+                    "remoteOption": "option_label_changed_amount_upper",
+                    "tableColumn": false,
+                    "subform": false
+                  },
+                  "events": {
+                    "onChange": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "140px",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            },
+            {
+              "key": "td_38",
+              "list": [
+                {
+                  "type": "input",
+                  "name": "单行文本",
+                  "key": "changed_contract_amount_upper",
+                  "model": "changedContractAmountUpper",
+                  "rules": [],
+                  "options": {
+                    "width": "100%",
+                    "defaultValue": "",
+                    "required": false,
+                    "requiredMessage": "",
+                    "dataType": "",
+                    "dataTypeCheck": false,
+                    "dataTypeMessage": "",
+                    "pattern": "",
+                    "patternCheck": false,
+                    "patternMessage": "",
+                    "validatorCheck": false,
+                    "validator": "",
+                    "placeholder": "",
+                    "customClass": "display-disabled cell-tight",
+                    "hideLabel": true,
+                    "disabled": true,
+                    "labelWidth": 100,
+                    "isLabelWidth": false,
+                    "hidden": false,
+                    "dataBind": true,
+                    "showPassword": false,
+                    "clearable": false,
+                    "maxlength": "",
+                    "showWordLimit": false,
+                    "customProps": {},
+                    "remoteFunc": "func_changed_contract_amount_upper",
+                    "remoteOption": "option_changed_contract_amount_upper",
+                    "tableColumn": false,
+                    "subform": false,
+                    "readonly": false
+                  },
+                  "events": {
+                    "onChange": "",
+                    "onFocus": "",
+                    "onBlur": ""
+                  }
+                }
+              ],
+              "type": "td",
+              "options": {
+                "align": "left",
+                "width": "",
+                "height": "",
+                "valign": "top",
+                "colspan": 1,
+                "rowspan": 1,
+                "customClass": ""
+              },
+              "rules": []
+            }
+          ]
+        }
+      ],
+      "headerRow": [
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_amount_info_1",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_amount_info_2",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_amount_info_3",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": "140px"
+          },
+          "key": "th_report_amount_info_4",
+          "rules": []
+        },
+        {
+          "type": "th",
+          "options": {
+            "width": ""
+          },
+          "key": "th_report_amount_info_5",
+          "rules": []
+        }
+      ]
+    }
+  ],
+  "config": {
+    "labelWidth": 100,
+    "labelPosition": "right",
+    "size": "small",
+    "customClass": "bord newFormMaking",
+    "ui": "element",
+    "layout": "horizontal",
+    "labelCol": 3,
+    "width": "850px",
+    "hideLabel": false,
+    "hideErrorMessage": false,
+    "styleSheets": ".sub-title .el-form-item__label{\n  text-align: center !important;\n  font-size: 22px !important;\n}\n.report-block { margin-bottom: 0 !important; }\n.report-block .el-form-item { margin-bottom: 0 !important; }\n.cell-label .el-form-item__label { text-align: center !important; color: #606266; font-weight: 600; }\n.left-label .el-form-item__label { text-align: left !important; }\n.section-label .el-form-item__label { text-align: center !important; color: #303133; font-weight: 700; }\n.display-disabled .el-input.is-disabled .el-input__inner, .display-disabled .el-textarea.is-disabled .el-textarea__inner { color: #909399 !important; background-color: #f5f7fa !important; text-align: center; }\n.cell-tight { margin-bottom: 0 !important; }\n.upload-cell .el-upload { display: inline-block; }\n.tableNoPadding .el-form-item { margin-bottom: 0 !important; }\n",
+    "eventScript": [
+      {
+        "key": "refresh",
+        "name": "refresh",
+        "func": "let winHash = window.location.hash || '';\nif (winHash.indexOf('flowLibrary/formFlow') > -1) return;\nconst initiatorCompanyId = this.getValue('initiatorCompanyId') || window.localStorage.getItem('invest-power-system-companyId') || '';\nconst companyName = this.getValue('companyName') || window.localStorage.getItem('invest-power-system-companyName') || '';\nlet currentValue = this.getValue('originContractObj');\nlet parsedValue = {};\ntry {\n  parsedValue = currentValue ? JSON.parse(currentValue) : {};\n} catch (error) {\n  parsedValue = {};\n}\nif (!parsedValue || Array.isArray(parsedValue)) {\n  parsedValue = {};\n}\nif (!parsedValue.initiatorCompanyId || !parsedValue.companyName) {\n  this.setData({\n    originContractObj: JSON.stringify(Object.assign({}, parsedValue, {\n      initiatorCompanyId: initiatorCompanyId,\n      companyName: companyName,\n    }))\n  });\n}\nthis.triggerEvent('syncOriginContractInfo');\nthis.triggerEvent('toggleMainBodyMode', this.getValue('mainBodyRadio') || '手动填写');\nthis.triggerEvent('syncChangedAmountUpper');"
+      },
+      {
+        "key": "onChange_origin_contract_obj",
+        "name": "onChange_origin_contract_obj",
+        "func": "this.triggerEvent('syncOriginContractInfo');"
+      },
+      {
+        "key": "syncOriginContractInfo",
+        "name": "syncOriginContractInfo",
+        "func": "function pick() {\n  for (var i = 0; i < arguments.length; i += 1) {\n    var item = arguments[i];\n    if (item !== undefined && item !== null && item !== '') {\n      return item;\n    }\n  }\n  return '';\n}\nfunction capitalMoney(num) {\n  if (num === undefined || num === null || num === '') return '';\n  num = String(num).replace(/,/g, '');\n  if (isNaN(Number(num))) return '';\n  var strOutput = '';\n  var strUnit = '仟佰拾亿仟佰拾万仟佰拾元角分';\n  num += '00';\n  var intPos = num.indexOf('.');\n  if (intPos >= 0) {\n    num = num.substring(0, intPos) + num.substr(intPos + 1, 2);\n  }\n  strUnit = strUnit.substr(strUnit.length - num.length);\n  for (var i = 0; i < num.length; i += 1) {\n    strOutput += '零壹贰叁肆伍陆柒捌玖'.substr(num.substr(i, 1), 1) + strUnit.substr(i, 1);\n  }\n  return strOutput\n    .replace(/零角零分$/, '整')\n    .replace(/零[仟佰拾]/g, '零')\n    .replace(/零{2,}/g, '零')\n    .replace(/零([亿|万])/g, '$1')\n    .replace(/零+元/, '元')\n    .replace(/亿零{0,3}万/, '亿')\n    .replace(/^元/, '零元');\n}\nfunction normalizeContractTalk(value) {\n  if (value === undefined || value === null || value === '') return '';\n  let raw = String(value).trim();\n  let map = {\n    'open': '公开招标',\n    'openBid': '公开招标',\n    'publicBidding': '公开招标',\n    '公开招标': '公开招标',\n    'invitation': '非公开挂网',\n    '邀请招标': '非公开挂网',\n    '非公开挂网': '非公开挂网',\n    'inquiry': '非挂网方式',\n    'negotiations': '非挂网方式',\n    'consult': '非挂网方式',\n    '询比采购': '非挂网方式',\n    '竞争性谈判采购': '非挂网方式',\n    '竞争性磋商采购': '非挂网方式',\n    '非挂网方式': '非挂网方式',\n    'direct': '直签',\n    'directSign': '直签',\n    '直签': '直签',\n    'singleSource': '单一来源采购',\n    'single_source': '单一来源采购',\n    '单一来源采购': '单一来源采购',\n    'internal': '内部采购',\n    'internalPurchase': '内部采购',\n    '内部采购': '内部采购',\n    'framework': '框采',\n    '框架协议采购': '框采',\n    '框采': '框采',\n    'other': '其他',\n    '其他': '其他'\n  };\n  return map[raw] || raw;\n}\nlet parsedValue = {};\ntry {\n  parsedValue = JSON.parse(this.getValue('originContractObj') || '{}');\n} catch (error) {\n  parsedValue = {};\n}\nlet rowData = {};\ntry {\n  rowData = parsedValue.rowData ? JSON.parse(parsedValue.rowData) : {};\n} catch (error) {\n  rowData = {};\n}\nlet originContractSyncKey = pick(parsedValue.id, parsedValue.contractId, parsedValue.bizId, rowData.id, rowData.contractId, rowData.bizId, rowData.flowProxyId, '');\nlet cachedSyncKey = this.getValue('originContractSyncKey') || '';\nlet originAmount = pick(\n  rowData.contractSum,\n  rowData.contractAmount,\n  rowData.contractMoney,\n  rowData.amount,\n  parsedValue.contractSum,\n  ''\n);\nlet originSubject = pick(\n  rowData.newContractBody,\n  rowData.contractBodyName,\n  rowData.contractMainBody,\n  rowData.contractBody,\n  parsedValue.newContractBody,\n  ''\n);\nlet originTalkWay = normalizeContractTalk(pick(\n  rowData.contractTalk,\n  rowData.contractTalkName,\n  rowData.procureWay,\n  rowData.procureWayName,\n  rowData.negotiationMethod,\n  rowData.negotiationWay,\n  rowData.contractNegotiationMethod,\n  rowData.contractNegotiationWay,\n  parsedValue.contractTalk,\n  parsedValue.contractTalkName,\n  parsedValue.procureWay,\n  parsedValue.procureWayName,\n  parsedValue.negotiationMethod,\n  parsedValue.negotiationWay,\n  parsedValue.contractNegotiationMethod,\n  parsedValue.contractNegotiationWay,\n  ''\n));\nlet nextData = {\n  originContractSyncKey: originContractSyncKey,\n  originProjectName: pick(rowData.projectName, rowData.contractProjectName, parsedValue.projectName, ''),\n  originContractSubject: originSubject,\n  originContractCategory: pick(rowData.classificationName, rowData.contractCategoryName, rowData.contractCategory, parsedValue.classificationName, ''),\n  originContractTalkWay: originTalkWay,\n  originContractAmount: originAmount,\n  originContractAmountUpper: capitalMoney(originAmount)\n};\nif (originContractSyncKey && originContractSyncKey !== cachedSyncKey) {\n  nextData.contractTalk = originTalkWay || '';\n} else if (!this.getValue('contractTalk') && originTalkWay) {\n  nextData.contractTalk = originTalkWay;\n}\nthis.setData(nextData);"
+      },
+      {
+        "key": "onChange_changed_contract_amount",
+        "name": "onChange_changed_contract_amount",
+        "func": "this.triggerEvent('syncChangedAmountUpper');"
+      },
+      {
+        "key": "syncChangedAmountUpper",
+        "name": "syncChangedAmountUpper",
+        "func": "function capitalMoney(num) {\n  if (num === undefined || num === null || num === '') return '';\n  num = String(num).replace(/,/g, '');\n  if (isNaN(Number(num))) return '';\n  var strOutput = '';\n  var strUnit = '仟佰拾亿仟佰拾万仟佰拾元角分';\n  num += '00';\n  var intPos = num.indexOf('.');\n  if (intPos >= 0) {\n    num = num.substring(0, intPos) + num.substr(intPos + 1, 2);\n  }\n  strUnit = strUnit.substr(strUnit.length - num.length);\n  for (var i = 0; i < num.length; i += 1) {\n    strOutput += '零壹贰叁肆伍陆柒捌玖'.substr(num.substr(i, 1), 1) + strUnit.substr(i, 1);\n  }\n  return strOutput\n    .replace(/零角零分$/, '整')\n    .replace(/零[仟佰拾]/g, '零')\n    .replace(/零{2,}/g, '零')\n    .replace(/零([亿|万])/g, '$1')\n    .replace(/零+元/, '元')\n    .replace(/亿零{0,3}万/, '亿')\n    .replace(/^元/, '零元');\n}\nconst changedAmount = this.getValue('changedContractAmount');\nthis.setData({ changedContractAmountUpper: capitalMoney(changedAmount) });"
+      },
+      {
+        "key": "onChange_main_body_radio",
+        "name": "onChange_main_body_radio",
+        "func": "this.triggerEvent('toggleMainBodyMode', arguments[0]);"
+      },
+      {
+        "key": "toggleMainBodyMode",
+        "name": "toggleMainBodyMode",
+        "func": "let param = arguments[0];\nlet currentValue = param && param.value ? param.value : param;\nif (currentValue === '相关方') {\n  this.display(['relatePartyReport']);\n  this.hide(['mainBodySubform']);\n  this.setData({ mainBodySubform: [{ partyType: '甲方', partyName: '' }, { partyType: '乙方', partyName: '' }] });\n} else {\n  this.display(['mainBodySubform']);\n  this.hide(['relatePartyReport']);\n  this.setData({ mainBodyRelateA: '', mainBodyRelateB: '' });\n}"
+      }
+    ],
+    "dataSource": [
+      {
+        "key": "related_party_data_source",
+        "name": "获取相关方列表",
+        "url": "/api/web/user/api/company/queryCompanyListByNameForRelatedParty?platformCode=200001",
+        "method": "POST",
+        "auto": true,
+        "params": {},
+        "headers": {},
+        "responseFunc": "return res.data;",
+        "requestFunc": "let WHOST = window.location.host;\nlet host = '';\nif (WHOST.indexOf('bserver') === 0) {\n  host = 'https://iserver.runshihua.com';\n} else {\n  host = 'http://192.168.1.220:8081';\n}\nlet sid = '';\nfor (const key in window.localStorage) {\n  if (key.endsWith('invest-power-system-token')) {\n    sid = window.localStorage.getItem(key);\n  }\n}\nconfig.url = host + config.url + '&sid=' + sid;\nconfig.data = { data: {}, sid: sid };\nreturn config;",
+        "args": []
+      }
+    ]
+  }
+}

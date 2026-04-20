@@ -1,0 +1,3 @@
+interface:
+  display_name: "FormMaking JSON 生成"
+  short_description: "根据业务需求生成宿主可消费的 FormMaking 表单 JSON"

@@ -1,0 +1,11 @@
+{
+  "name": "ouyanggai-skills",
+  "description": "ouyanggai 的 AI skills monorepo",
+  "skills": [
+    {
+      "name": "formmaking-json-generator",
+      "path": "skills/formmaking-json-generator",
+      "description": "生成、改写、审查和解释 rsh-cloud FormMaking 表单 JSON"
+    }
+  ]
+}

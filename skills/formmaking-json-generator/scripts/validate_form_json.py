@@ -238,6 +238,8 @@ class FormValidator:
             self._validate_grid(node, path)
         elif node_type == "table":
             self._validate_table(node, path)
+        elif node_type == "subform":
+            self._validate_subform(node, path)
         elif node_type in LIST_CONTAINERS:
             self._validate_list_container(node, path)
         elif node_type in TABS_CONTAINERS:
@@ -388,6 +390,41 @@ class FormValidator:
             return
         for col_index, column in enumerate(columns):
             self._validate_node(column, f"{path}.tableColumns[{col_index}]")
+
+    def _validate_subform(self, node: dict, path: str) -> None:
+        self._validate_list_container(node, path)
+
+        child_list = node.get("list")
+        if not isinstance(child_list, list):
+            return
+
+        has_report_child = any(
+            isinstance(child, dict) and child.get("type") == "report"
+            for child in child_list
+        )
+        if not has_report_child:
+            return
+
+        options = node.get("options") if isinstance(node.get("options"), dict) else {}
+        custom_class = options.get("customClass")
+        if isinstance(custom_class, str) and "tableNoPadding" in custom_class.split():
+            return
+
+        if (
+            options.get("showControl")
+            or options.get("isAdd")
+            or options.get("isDelete")
+            or options.get("paging")
+        ):
+            self.warn(
+                path,
+                "`subform` 包 `report` 会渲染编号、增删或分页控制；制式 Word/截图固定分区除非明确要求动态多条，否则应改为固定 `report` 结构",
+            )
+        else:
+            self.warn(
+                path,
+                "`subform` 包 `report` 仍可能引入重复块外壳；只有明确动态重复业务块时才建议使用",
+            )
 
     def _validate_list_container(self, node: dict, path: str) -> None:
         child_list = node.get("list")

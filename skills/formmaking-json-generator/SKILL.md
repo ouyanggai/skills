@@ -16,6 +16,7 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - 首次在一个新工作区使用时，先建立本地上下文。
   运行 [scripts/discover_context.py](scripts/discover_context.py) 自动查找本地目录；找不到时，只向使用者询问三项：全过程管理平台的目录（开发目录）、FormMaking 源码目录、生成的 JSON 保存目录。
 - 生成或修 JSON 前，先读 [references/formmaking-json-rules.md](references/formmaking-json-rules.md)。
+- 需求来源是 Word、截图、PDF 截图或“照这个表做”时，先读 [references/word-source-conversion.md](references/word-source-conversion.md)；如果是 `.docx`，先运行 [scripts/inspect_docx_tables.py](scripts/inspect_docx_tables.py) 提取表格台账。
 - 需求里有明显布局要求、截图仿制、打印式表单或复杂分区时，再读 [references/layout-and-common-patterns.md](references/layout-and-common-patterns.md)。
 - 需求涉及宿主自定义组件时，再读 [references/host-custom-components.md](references/host-custom-components.md)。
 - 需要找最接近的真实样本时，再读 [references/sample-index.md](references/sample-index.md)。
@@ -39,6 +40,7 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
    只接受 FormMaking 输出；如果用户说的是无表单流程、纯业务页、页面路由或 BPMN 编排，先说明不在本 skill 范围。
 2. 归一化需求。
    至少提炼出：表单名称、业务分区、字段清单、重复明细、校验、显隐/禁用/联动、数据源、是否要用宿主自定义组件。
+   如果输入来自 Word/截图，先提炼“源表结构台账”：标题、主表列数、行列合并、分区标题、固定重复段、动态明细段、审批意见区、Word 里的复选/单选符号。
 3. 先定布局骨架。
    除极简表单外，不要把字段直接平铺在 `list` 顶层；必须先决定每个分区用 `grid`、`report`、`table`、`subform`、`inline` 哪种容器。
    正式审批表、截图仿制、制式台账类表单，默认优先考虑“顶层 `text` 标题 + 顶层 `report` 分区”；不要下意识先套一层单列 `grid`。
@@ -65,6 +67,9 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
   `labelPosition: "right"`、`customClass: "bord"` 或 `customClass: "bord newFormMaking"`、必要时带 `labelCol`。
 - 新生成的正式表单，默认至少使用一种布局容器；复杂表单优先显式分区，不要几十个字段裸堆在顶层 `list`。
 - 普通业务区优先 `grid`；打印式审批单、制式台账、截图仿制型表单优先 `report`；重复明细优先 `table`；重复块优先 `subform`。
+- Word/截图里的固定“一、二、三”分区默认不是动态明细，不要自动改成 `subform`；只有用户明确要求新增/删除/任意多个时才用 `subform` 或 `table`。
+- Word 里的 `□`、`☑`、`○`、`●` 默认映射为 `checkbox` 或 `radio`，不要为了省事改成 `select`。
+- 底部审批意见/签字区默认按流程意见展示或静态签批占位处理；除非用户明确要求发起人填写，不要过度生成可编辑 `textarea` / `input`。
 - 正式表格型表单的标题，优先直接用顶层 `text`，样式类名沿用真实样本里的 `title` / `sub-title` 思路；不要为了标题再包一层没有实际列意义的 `grid`。
 - `report` 默认必须显式写 `options.width = "100%"`；漏掉宽度常导致表格左缩、轮廓不完整。
 - 如果一个顶层 `grid` 只有 1 个 `span: 24` 列，而且这个列里只放了 1 个 `report`，通常应直接把 `report` 放到顶层，减少无意义布局层级。
@@ -87,6 +92,9 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 
 - 检查正式表格型表单是否整体居中、轮廓完整，不应出现左侧塌缩。
 - 检查是否存在“单列 `grid` 纯包一层”的冗余容器。
+- 检查是否把 Word 固定重复分区误生成为 `subform`，尤其是出现蓝色新增按钮、编号列、删除按钮、分页控件时要回退为固定 `report` 结构。
+- 检查 Word 复选/单选符号是否被误生成为下拉框。
+- 检查审批意见区是否被过度字段化；没有明确录入要求时，不要生成一堆可编辑意见/签字输入框。
 - 检查是否存在不必要的双重边框，尤其是 `report` 套 `report`、`report` 套 `table` 的场景。
 - 检查标题、标签、分区文字是否和真实样本的视觉重心一致，避免标题很正、主体却偏左。
 - 检查回填展示字段是否真正置灰不可编辑，而不是只有“不可输入”但视觉上仍像普通输入框。

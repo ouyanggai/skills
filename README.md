@@ -53,6 +53,12 @@ python3 scripts/check.py
 python3 skills/formmaking-json-generator/scripts/validate_form_json.py --strict path/to/form.json
 ```
 
+分析 Word 表格结构，辅助按原表还原布局：
+
+```bash
+python3 skills/formmaking-json-generator/scripts/inspect_docx_tables.py path/to/form.docx
+```
+
 ## 新环境首次使用
 
 第一次使用时，只需要告诉 `formmaking-json-generator` 三个目录：

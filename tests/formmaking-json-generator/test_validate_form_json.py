@@ -379,6 +379,78 @@ class ValidateFormJsonTests(unittest.TestCase):
         self.assertTrue(result.ok)
         self.assertTrue(any("options.required" in item and "rules" in item for item in result.warnings))
 
+    def test_subform_wrapping_report_warns_for_formal_layout(self):
+        payload = {
+            "list": [
+                {
+                    "type": "subform",
+                    "name": "固定分区",
+                    "model": "fixedSections",
+                    "key": "fixed_sections",
+                    "rules": [],
+                    "options": {
+                        "hidden": False,
+                        "dataBind": True,
+                        "showControl": True,
+                        "isAdd": True,
+                        "isDelete": True,
+                    },
+                    "events": {},
+                    "list": [
+                        {
+                            "type": "report",
+                            "name": "表格布局",
+                            "model": "sectionReport",
+                            "key": "section_report",
+                            "rules": [],
+                            "options": {
+                                "hidden": False,
+                                "borderWidth": 1,
+                                "borderColor": "#999",
+                                "width": "100%",
+                                "customClass": "",
+                            },
+                            "rows": [
+                                {
+                                    "columns": [
+                                        {
+                                            "type": "td",
+                                            "key": "section_cell",
+                                            "rules": [],
+                                            "options": {
+                                                "colspan": 1,
+                                                "rowspan": 1,
+                                                "align": "center",
+                                                "valign": "middle",
+                                            },
+                                            "list": [],
+                                        }
+                                    ]
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ],
+            "config": {
+                "labelWidth": 100,
+                "labelPosition": "left",
+                "size": "small",
+                "customClass": "",
+                "ui": "element",
+                "layout": "horizontal",
+                "width": "100%",
+                "hideLabel": False,
+                "hideErrorMessage": False,
+                "eventScript": [],
+                "dataSource": [],
+            },
+        }
+
+        result = validate_form(payload, source="<memory>", strict=True)
+        self.assertTrue(result.ok)
+        self.assertTrue(any("subform" in item and "report" in item for item in result.warnings))
+
 
 if __name__ == "__main__":
     unittest.main()

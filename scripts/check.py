@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import importlib.util
 import json
 import subprocess
 import sys
@@ -38,7 +39,24 @@ def validate_manifest() -> None:
 
 
 def run_unittest() -> None:
-    suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), pattern="test_*.py")
+    suite = unittest.TestSuite()
+    for test_path in sorted((ROOT / "tests").rglob("test_*.py")):
+        module_name = (
+            "repo_test_"
+            + "_".join(test_path.relative_to(ROOT).with_suffix("").parts).replace("-", "_")
+        )
+        spec = importlib.util.spec_from_file_location(module_name, test_path)
+        if spec is None or spec.loader is None:
+            raise AssertionError(f"无法加载测试文件: {test_path.relative_to(ROOT)}")
+
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[module_name] = module
+        spec.loader.exec_module(module)
+        suite.addTests(unittest.defaultTestLoader.loadTestsFromModule(module))
+
+    if suite.countTestCases() == 0:
+        raise AssertionError("未发现任何测试用例")
+
     result = unittest.TextTestRunner(verbosity=2).run(suite)
     if not result.wasSuccessful():
         raise SystemExit(1)

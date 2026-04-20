@@ -14,7 +14,7 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 ## 先读哪里
 
 - 首次在一个新工作区使用时，先建立本地上下文。
-  运行 [scripts/discover_context.py](scripts/discover_context.py) 自动查找宿主工程、FormMaking 源码和样本目录；找不到时，只向使用者询问缺失项。
+  运行 [scripts/discover_context.py](scripts/discover_context.py) 自动查找本地目录；找不到时，只向使用者询问三项：全过程管理平台的目录（开发目录）、FormMaking 源码目录、生成的 JSON 保存目录。
 - 生成或修 JSON 前，先读 [references/formmaking-json-rules.md](references/formmaking-json-rules.md)。
 - 需求里有明显布局要求、截图仿制、打印式表单或复杂分区时，再读 [references/layout-and-common-patterns.md](references/layout-and-common-patterns.md)。
 - 需求涉及宿主自定义组件时，再读 [references/host-custom-components.md](references/host-custom-components.md)。
@@ -26,11 +26,12 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - 不要把某个人机器上的绝对路径写进生成逻辑或 skill 文档。
 - 默认从当前工作区开始查找：
   `rsh-cloud-invest-power-system*` 宿主工程、`vue-form-making`/`form-making` 源码、`analysis/form-proxy-samples/raw` 样本目录。
-- 自动发现失败时，只问必要信息：
-  宿主工程路径、FormMaking 源码路径、样本 JSON 目录、输出文件名或表单名称。
+- 自动发现失败时，优先用使用者能理解的话询问必要信息：
+  全过程管理平台的目录（你的开发目录）、FormMaking 源码目录、生成的 JSON 保存目录。
+- 真实样本目录是增强项，不是第一轮必须项；如果使用者已有历史表单 JSON 样本，再询问样本目录用于学习规律。
 - 发现结果保存在当前工作区的 `.formmaking-json-generator/context.json`。
   这是使用者本机配置，不应作为 skill 内容传播。
-- 生成时优先使用本地上下文中的路径；没有上下文时，仍可只依赖用户给出的字段和本 skill 的通用规则生成基础 JSON。
+- 生成时优先使用本地上下文中的路径；没有上下文时，仍可只依赖用户给出的字段和本 skill 的通用规则生成基础 JSON，并把产物保存到用户指定的 JSON 保存目录。
 
 ## 工作流
 

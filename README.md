@@ -55,20 +55,25 @@ python3 skills/formmaking-json-generator/scripts/validate_form_json.py --strict 
 
 ## 新环境首次使用
 
-`formmaking-json-generator` 需要了解当前使用者本地宿主工程、FormMaking 源码和真实样本目录。首次使用时在工作区运行：
+第一次使用时，只需要告诉 `formmaking-json-generator` 三个目录：
+
+- 全过程管理平台的目录（你的开发目录，比如 `rsh-cloud-invest-power-system-test`）
+- FormMaking 源码目录
+- 生成的 JSON 保存目录
+
+推荐直接这样配置：
+
+```bash
+python3 skills/formmaking-json-generator/scripts/discover_context.py \
+  --platform-dir /path/to/rsh-cloud-invest-power-system-test \
+  --formmaking-dir /path/to/vue-form-making \
+  --json-dir /path/to/form-json-output
+```
+
+如果这些目录就在当前工作区附近，也可以先让脚本自动找：
 
 ```bash
 python3 skills/formmaking-json-generator/scripts/discover_context.py --workspace .
 ```
 
-如果自动发现失败，可以显式传入路径：
-
-```bash
-python3 skills/formmaking-json-generator/scripts/discover_context.py \
-  --workspace . \
-  --host-project /path/to/host-project \
-  --formmaking-source /path/to/vue-form-making \
-  --sample-dir /path/to/form-json-samples
-```
-
-脚本会把本地配置保存到 `.formmaking-json-generator/context.json`，这个文件不会提交。
+如果有历史真实表单 JSON 样本目录，可额外加 `--sample-dir /path/to/form-json-samples`，便于生成时参考真实表单规律。脚本会把本地配置保存到 `.formmaking-json-generator/context.json`，这个文件不会提交。

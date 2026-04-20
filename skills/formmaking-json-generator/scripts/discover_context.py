@@ -22,6 +22,20 @@ SKIP_DIRS = {
 }
 
 
+def safe_exists(path: Path) -> bool:
+    try:
+        return path.exists()
+    except OSError:
+        return False
+
+
+def safe_is_dir(path: Path) -> bool:
+    try:
+        return path.is_dir()
+    except OSError:
+        return False
+
+
 def resolve_path(value: str | None) -> str:
     if not value:
         return ""
@@ -30,7 +44,7 @@ def resolve_path(value: str | None) -> str:
 
 def walk_limited(root: Path, max_depth: int = 5) -> Iterable[Path]:
     root = root.resolve()
-    if not root.exists() or not root.is_dir():
+    if not safe_exists(root) or not safe_is_dir(root):
         return
 
     root_depth = len(root.parts)
@@ -53,13 +67,13 @@ def candidate_search_roots(start: Path) -> list[Path]:
     roots: list[Path] = []
 
     for item in [start, *start.parents[:4]]:
-        if item.exists() and item.is_dir() and item not in roots:
+        if safe_exists(item) and safe_is_dir(item) and item not in roots:
             roots.append(item)
 
     for parent in start.parents[:3]:
         try:
             for child in parent.iterdir():
-                if child.is_dir() and child.name not in SKIP_DIRS and child not in roots:
+                if safe_is_dir(child) and child.name not in SKIP_DIRS and child not in roots:
                     roots.append(child)
         except OSError:
             continue
@@ -69,22 +83,25 @@ def candidate_search_roots(start: Path) -> list[Path]:
 
 def looks_like_host_project(path: Path) -> bool:
     return (
-        (path / "src" / "main.js").exists()
-        and (path / "src" / "components" / "Custom").exists()
+        safe_exists(path / "src" / "main.js")
+        and safe_exists(path / "src" / "components" / "Custom")
     )
 
 
 def looks_like_formmaking_source(path: Path) -> bool:
     return (
-        (path / "src" / "components" / "GenerateForm.vue").exists()
-        and (path / "src" / "components" / "GenerateElementItem.vue").exists()
+        safe_exists(path / "src" / "components" / "GenerateForm.vue")
+        and safe_exists(path / "src" / "components" / "GenerateElementItem.vue")
     )
 
 
 def looks_like_sample_root(path: Path) -> bool:
-    if not path.exists() or not path.is_dir():
+    if not safe_exists(path) or not safe_is_dir(path):
         return False
-    return any(path.glob("*.json"))
+    try:
+        return any(path.glob("*.json"))
+    except OSError:
+        return False
 
 
 def discover(start: Path) -> dict[str, str]:
@@ -92,6 +109,7 @@ def discover(start: Path) -> dict[str, str]:
         "workspace_root": str(start.resolve()),
         "host_project": "",
         "formmaking_source": "",
+        "json_dir": "",
         "sample_dir": "",
     }
 
@@ -106,7 +124,11 @@ def discover(start: Path) -> dict[str, str]:
             if not context["sample_dir"] and looks_like_sample_root(sample_candidate):
                 context["sample_dir"] = str(sample_candidate.resolve())
 
-            if all(context.values()):
+            if (
+                context["host_project"]
+                and context["formmaking_source"]
+                and context["sample_dir"]
+            ):
                 return context
 
     return context
@@ -140,9 +162,9 @@ def merge_context(
 
 def missing_items(context: dict[str, str]) -> list[str]:
     labels = {
-        "host_project": "宿主工程路径",
-        "formmaking_source": "FormMaking 源码路径",
-        "sample_dir": "真实表单 JSON 样本目录",
+        "host_project": "全过程管理平台的目录（你的开发目录）",
+        "formmaking_source": "FormMaking 源码目录",
+        "json_dir": "生成的 JSON 保存目录",
     }
     return [label for key, label in labels.items() if not context.get(key)]
 
@@ -150,9 +172,26 @@ def missing_items(context: dict[str, str]) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="发现并保存 FormMaking skill 的本地上下文")
     parser.add_argument("--workspace", default=".", help="当前工作区目录")
-    parser.add_argument("--host-project", default="", help="宿主工程路径")
-    parser.add_argument("--formmaking-source", default="", help="FormMaking 源码路径")
-    parser.add_argument("--sample-dir", default="", help="真实表单 JSON 样本目录")
+    parser.add_argument(
+        "--platform-dir",
+        "--host-project",
+        dest="host_project",
+        default="",
+        help="全过程管理平台的目录（你的开发目录）",
+    )
+    parser.add_argument(
+        "--formmaking-dir",
+        "--formmaking-source",
+        dest="formmaking_source",
+        default="",
+        help="FormMaking 源码目录",
+    )
+    parser.add_argument(
+        "--json-dir",
+        default="",
+        help="生成的 JSON 保存目录",
+    )
+    parser.add_argument("--sample-dir", default="", help="可选：真实表单 JSON 样本目录")
     parser.add_argument("--print-only", action="store_true", help="只输出发现结果，不写入 context.json")
     args = parser.parse_args(argv)
 
@@ -166,6 +205,7 @@ def main(argv: list[str] | None = None) -> int:
         {
             "host_project": args.host_project,
             "formmaking_source": args.formmaking_source,
+            "json_dir": args.json_dir,
             "sample_dir": args.sample_dir,
         },
     )

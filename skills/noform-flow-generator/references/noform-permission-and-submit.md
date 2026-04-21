@@ -44,6 +44,7 @@
 
 - 新业务组件如果没补 `apiList`，保存和提交都会断
 - 组件 `name` 和 `apiList` key 必须一致
+- 这类问题很适合在交付前用 `validate_noform_component.py` 统一扫描，不要等运行时报错再回头补
 
 ## 4. 流程提交链
 

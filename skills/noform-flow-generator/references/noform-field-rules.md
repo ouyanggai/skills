@@ -67,6 +67,7 @@ rules: [
 - 输入框默认 `blur`
 - 选择框默认 `change`
 - 校验提示统一中文
+- 生成或修改后，优先用 `validate_noform_component.py` 扫一遍，及时发现英文提示、缺失 `rules`、配置文件断链这类问题
 
 ## 3. `SimpleTable` 配置 DSL
 

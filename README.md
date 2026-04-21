@@ -82,6 +82,12 @@ python3 skills/formmaking-json-generator/scripts/analyze_sample_patterns.py --wo
 python3 skills/noform-flow-generator/scripts/inspect_noform_host.py --workspace .
 ```
 
+校验无表单组件是否符合宿主约定：
+
+```bash
+python3 skills/noform-flow-generator/scripts/validate_noform_component.py --workspace .
+```
+
 ## 新环境首次使用
 
 第一次使用时，只需要告诉 `formmaking-json-generator` 三个目录：

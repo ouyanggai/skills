@@ -4,6 +4,23 @@
 
 宿主自定义组件以当前工作区的宿主工程为准。首次使用时先通过 `scripts/discover_context.py` 定位宿主工程；然后检查 `{host_project}/src/main.js`、`{host_project}/src/components/Custom/customJson.js` 和 `{host_project}/src/components/Custom/components/`。
 
+如果想先快速得到“当前宿主的组件清单 + 默认 options + props + 值形态 + 样本频次 + 风险标签”，优先运行：
+
+```bash
+python3 skills/formmaking-json-generator/scripts/inspect_host_components.py --workspace .
+```
+
+需要 JSON 结果或落盘时：
+
+```bash
+python3 skills/formmaking-json-generator/scripts/inspect_host_components.py \
+  --workspace . \
+  --format json \
+  --output ./analysis/host-component-summary.json
+```
+
+这份参考文档是沉淀后的静态总结；新环境、新分支、新宿主变体里，脚本输出优先级更高。
+
 下面清单来自一组已分析样本，括号内是样本节点出现次数。迁移到新环境后，如果宿主注册组件或样本不同，应以本地源码和样本重新确认。
 
 - `custom-upload-excel`（1）
@@ -385,16 +402,138 @@ raw 样本补充：
 
 - `custom-upload-excel`
   宿主已注册，但样本很少；需要明确“上传 Excel 并解析”时才用
+  源码里 `value` 是 JSON 字符串规则集，不是普通文件值；通常用表头中文名映射必填、类型、长度等校验规则
 - `out-bound-material-select`
   仅材料出库类场景考虑
 - `in-bound-material-select`
   仅材料入库类场景考虑
 - `person-mulSelect`
-  当前样本中未出现，不要主动选
+  当前样本很少，但源码约束已明确：值通常是 `{"flowList":[...]}`，并会写 `<model>__formPersonId`
 - `custome-file-view`
   当前样本中未出现，不要主动选
 - `custome-expense-budgetType`
-  当前样本中未出现，不要主动选
+  当前样本中未出现；源码里 `value` 是数组，偏预算级联，不要当普通下拉框替代品
+
+### `custom-upload-excel`
+
+用途：
+
+- 导入 Excel 第一张表并按传入规则做预校验、预览、确认导入
+
+值形态：
+
+- `value` 不是上传结果，而是 JSON 字符串形式的“表头校验规则”
+- 常见结构是：
+  `{"日期":[{"required":true}],"单价":[{"type":"number"}]}`
+
+适合场景：
+
+- 批量导入明细
+- 按模板导入并预检数据
+
+注意：
+
+- 它不是普通附件上传，也不是单纯“导入 Excel 文件”按钮。
+- 如果需求里没有“先展示预览、按列校验、确认导入”这条链路，就不要用它。
+
+参考源码：
+
+- `{host_project}/src/components/Custom/components/CustomeUploadExcel/index.vue`
+
+### `custome-expense-budgetType`
+
+用途：
+
+- 费用预算类型级联选择
+
+值形态：
+
+- `value` 是数组
+
+适合场景：
+
+- 预算分类级联
+
+注意：
+
+- 组件内部依赖预算接口和树形数据，不是通用下拉。
+- 即使名字像“类型选择”，也不要把它替代普通 `select/cascader`。
+
+参考源码：
+
+- `{host_project}/src/components/Custom/components/ExpenseBudgetType/index.vue`
+
+### `custom-weather`
+
+用途：
+
+- 固定天气枚举选择
+
+值形态：
+
+- `value` 是字符串
+
+适合场景：
+
+- 真正需要天气枚举的轻量业务字段
+
+注意：
+
+- 这是轻量枚举组件，不需要联动、虚拟字段或业务上下文。
+- 如果只是普通枚举，也可以直接退回原生 `select`，不要强依赖宿主组件。
+
+参考源码：
+
+- `{host_project}/src/components/Custom/components/CustomeWeather.vue`
+
+### `in-bound-material-select` / `out-bound-material-select`
+
+用途：
+
+- 材料入库/出库选择
+
+适合场景：
+
+- 库存、化学品、物资出入库等强业务流程
+
+注意：
+
+- 组件本身就是业务弹窗，不是简单下拉。
+- 默认事件里包含 `selectedData`，通常需要后续事件脚本消费选中结果。
+- 没有库存业务上下文时不要主动生成。
+
+参考源码：
+
+- `{host_project}/src/components/Custom/components/InventoryMaterialSelect/inBound.vue`
+- `{host_project}/src/components/Custom/components/InventoryMaterialSelect/outBound.vue`
+
+### `request_payout`
+
+用途：
+
+- 关联请款单或相近业务流程
+
+值形态：
+
+- `value` 是 JSON 字符串
+
+隐含逻辑：
+
+- 依赖当前表单已有字段，例如 `myCompanyName`
+- 组件会主动发出 `$emit('onChange', data)`，通常需要外层事件脚本接住
+
+适合场景：
+
+- 请款单关联
+- 与收款单位强相关的流程选择
+
+注意：
+
+- 这是强业务组件，不是通用“关联系统单据”入口。
+
+参考源码：
+
+- `{host_project}/src/components/Custom/components/RequestPayout/index.vue`
 
 ## 6. 自定义组件 JSON 写法
 

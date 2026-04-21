@@ -23,6 +23,42 @@ REQUIRED_CONFIG_KEYS = {
 
 LIST_CONTAINERS = {"subform", "inline", "dialog", "card", "group"}
 TABS_CONTAINERS = {"tabs", "collapse"}
+HOST_STYLE_CLASSES_REQUIRE_NEW_FORM_MAKING = {
+    "showRedPot",
+    "tableNoPadding",
+    "approvalOpinion",
+    "autoAuditInfoField",
+}
+HOST_JSON_STRING_CUSTOM_COMPONENTS = {
+    "custome-info-select",
+    "general-list-select-show",
+    "general-flow-list-mulSelect",
+    "person-mulSelect",
+    "ltd-or-dep-select",
+}
+HOST_MODEL_KEYWORD_RULES = {
+    "custome-info-select": ("username", "depname", "companyname", "dutyname"),
+    "ltd-or-dep-select": ("singleselect", "mulselect"),
+}
+HOST_BUSINESS_COMPONENT_EXTEND_PROPS = {
+    "legal-contract-doctable": {
+        "isFlowInitiate",
+        "businessId",
+        "companyId",
+        "pageTemplateId",
+        "formPage",
+        "isExamine",
+        "isReInitiate",
+        "isTranspondFlow",
+    },
+    "contract-seal-review-business": {
+        "isFlowInitiate",
+        "businessId",
+        "companyId",
+        "isExamine",
+        "isReInitiate",
+    },
+}
 
 
 @dataclass
@@ -45,6 +81,7 @@ class FormValidator:
         self._seen_keys: set[str] = set()
         self._seen_event_keys: set[str] = set()
         self._seen_data_source_keys: set[str] = set()
+        self._config_custom_class: str = ""
 
     def error(self, path: str, message: str) -> None:
         self.result.errors.append(f"{path}: {message}")
@@ -84,6 +121,10 @@ class FormValidator:
         missing = sorted(REQUIRED_CONFIG_KEYS - set(config.keys()))
         if missing:
             self.warn(path, f"缺少常用配置键: {', '.join(missing)}")
+
+        custom_class = config.get("customClass")
+        if isinstance(custom_class, str):
+            self._config_custom_class = custom_class
 
         event_script = config.get("eventScript", [])
         if event_script is None:
@@ -222,6 +263,8 @@ class FormValidator:
             el = node.get("el")
             if not isinstance(el, str) or not el.strip():
                 self.error(f"{path}.el", "`custom` 组件必须提供非空 `el`")
+            else:
+                self._validate_host_custom_component(node, path, el, options or {})
 
         if node_type == "component":
             template = (options or {}).get("template")
@@ -252,6 +295,16 @@ class FormValidator:
                 f"{path}.options.customClass",
                 "回填展示字段不建议用红色高亮，优先使用 `disabled` 置灰并保持与宿主样式一致",
             )
+        if isinstance(custom_class, str):
+            class_tokens = set(custom_class.split())
+            if (
+                class_tokens & HOST_STYLE_CLASSES_REQUIRE_NEW_FORM_MAKING
+                and "newFormMaking" not in self._config_custom_class.split()
+            ):
+                self.warn(
+                    f"{path}.options.customClass",
+                    "该样式类依赖宿主 `newFormMaking` 壳层；若要稳定复现现网样式，`config.customClass` 应包含 `newFormMaking`",
+                )
 
         if options.get("remote") and options.get("remoteType") == "datasource":
             remote_data_source = options.get("remoteDataSource")
@@ -303,6 +356,58 @@ class FormValidator:
                 value = options.get(option_name)
                 if value is not None and not isinstance(value, dict):
                     self.warn(f"{path}.options.{option_name}", f"`{option_name}` 通常应为对象")
+
+    def _validate_host_custom_component(
+        self,
+        node: dict,
+        path: str,
+        el: str,
+        options: dict,
+    ) -> None:
+        default_value = options.get("defaultValue")
+        if (
+            el in HOST_JSON_STRING_CUSTOM_COMPONENTS
+            and default_value not in (None, "")
+            and not isinstance(default_value, str)
+        ):
+            self.warn(
+                f"{path}.options.defaultValue",
+                f"`{el}` 通常把值当 JSON 字符串处理，`defaultValue` 更适合留空字符串或合法 JSON 字符串",
+            )
+
+        model = node.get("model")
+        if isinstance(model, str):
+            lowered_model = model.lower()
+            required_keywords = HOST_MODEL_KEYWORD_RULES.get(el)
+            if required_keywords and not any(keyword in lowered_model for keyword in required_keywords):
+                self.strict_issue(
+                    f"{path}.model",
+                    f"`{el}` 依赖字段命名识别类型，`model` 通常应包含 {', '.join(required_keywords)} 之一",
+                )
+
+        extend_props = options.get("extendProps")
+        required_extend_props = HOST_BUSINESS_COMPONENT_EXTEND_PROPS.get(el)
+        if required_extend_props:
+            if not isinstance(extend_props, dict):
+                self.strict_issue(
+                    f"{path}.options.extendProps",
+                    f"`{el}` 通常需要对象形式的 `extendProps`",
+                )
+            else:
+                missing = sorted(required_extend_props - set(extend_props.keys()))
+                if missing:
+                    self.strict_issue(
+                        f"{path}.options.extendProps",
+                        f"`{el}` 常用业务参数缺失: {', '.join(missing)}",
+                    )
+
+        if el == "legal-contract-doctable":
+            custom_class = options.get("customClass")
+            if not isinstance(custom_class, str) or "tableNoPadding" not in custom_class.split():
+                self.warn(
+                    f"{path}.options.customClass",
+                    "`legal-contract-doctable` 在宿主默认配置里通常配合 `tableNoPadding` 使用，否则边距和边框常与现网页面不一致",
+                )
 
     def _validate_required_rules(
         self,
@@ -384,10 +489,29 @@ class FormValidator:
                 self._validate_node(child, f"{col_path}.list[{child_index}]")
 
     def _validate_table(self, node: dict, path: str) -> None:
+        options = node.get("options") if isinstance(node.get("options"), dict) else {}
         columns = node.get("tableColumns")
         if not isinstance(columns, list):
             self.error(f"{path}.tableColumns", "`table.tableColumns` 必须是数组")
             return
+
+        if options.get("nestedHeader") and not options.get("nestedHeaderName"):
+            self.warn(
+                f"{path}.options.nestedHeaderName",
+                "开启 `nestedHeader` 时通常应同步提供 `nestedHeaderName`",
+            )
+
+        if options.get("noShowTable") and (
+            options.get("required")
+            or options.get("isAdd")
+            or options.get("isDelete")
+            or options.get("showControl")
+        ):
+            self.warn(
+                f"{path}.options.noShowTable",
+                "`noShowTable` 更适合无数据即隐藏的展示型表格；录入型/必填型表格一般不建议开启",
+            )
+
         for col_index, column in enumerate(columns):
             self._validate_node(column, f"{path}.tableColumns[{col_index}]")
 

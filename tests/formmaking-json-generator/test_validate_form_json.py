@@ -177,6 +177,237 @@ class ValidateFormJsonTests(unittest.TestCase):
         self.assertFalse(result.ok)
         self.assertTrue(any(".options.width" in item for item in result.errors))
 
+    def test_style_class_requires_new_form_making_shell(self):
+        payload = {
+            "list": [
+                {
+                    "type": "input",
+                    "name": "合同名称",
+                    "model": "contractName",
+                    "key": "contractName",
+                    "rules": [
+                        {
+                            "required": True,
+                            "message": "请输入合同名称",
+                        }
+                    ],
+                    "options": {
+                        "width": "100%",
+                        "hidden": False,
+                        "dataBind": True,
+                        "disabled": False,
+                        "required": True,
+                        "requiredMessage": "请输入合同名称",
+                        "customClass": "showRedPot",
+                        "labelWidth": 100,
+                        "isLabelWidth": False,
+                    },
+                    "events": {"onChange": "", "onFocus": "", "onBlur": ""},
+                }
+            ],
+            "config": {
+                "labelWidth": 100,
+                "labelPosition": "left",
+                "size": "small",
+                "customClass": "bord",
+                "ui": "element",
+                "layout": "horizontal",
+                "width": "100%",
+                "hideLabel": False,
+                "hideErrorMessage": False,
+                "eventScript": [],
+                "dataSource": [],
+            },
+        }
+
+        result = validate_form(payload, source="<memory>", strict=True)
+        self.assertTrue(result.ok)
+        self.assertTrue(any("newFormMaking" in item for item in result.warnings))
+
+    def test_custome_info_select_requires_semantic_model_keyword(self):
+        payload = {
+            "list": [
+                {
+                    "type": "custom",
+                    "name": "经办人",
+                    "model": "handler",
+                    "key": "handler",
+                    "el": "custome-info-select",
+                    "rules": [],
+                    "options": {
+                        "width": "100%",
+                        "hidden": False,
+                        "dataBind": True,
+                        "disabled": False,
+                        "customProps": {},
+                        "extendProps": {},
+                    },
+                    "events": {"onChange": "", "onFocus": "", "onBlur": ""},
+                }
+            ],
+            "config": {
+                "labelWidth": 100,
+                "labelPosition": "left",
+                "size": "small",
+                "customClass": "bord newFormMaking",
+                "ui": "element",
+                "layout": "horizontal",
+                "width": "100%",
+                "hideLabel": False,
+                "hideErrorMessage": False,
+                "eventScript": [],
+                "dataSource": [],
+            },
+        }
+
+        result = validate_form(payload, source="<memory>", strict=True)
+        self.assertFalse(result.ok)
+        self.assertTrue(any("依赖字段命名识别类型" in item for item in result.errors))
+
+    def test_json_string_custom_component_default_value_warns(self):
+        payload = {
+            "list": [
+                {
+                    "type": "custom",
+                    "name": "合同选择",
+                    "model": "contractObj",
+                    "key": "contractObj",
+                    "el": "general-list-select-show",
+                    "rules": [],
+                    "options": {
+                        "width": "100%",
+                        "defaultValue": {},
+                        "hidden": False,
+                        "dataBind": True,
+                        "disabled": False,
+                        "customProps": {},
+                        "extendProps": {},
+                    },
+                    "events": {"onChange": "", "onFocus": "", "onBlur": ""},
+                }
+            ],
+            "config": {
+                "labelWidth": 100,
+                "labelPosition": "left",
+                "size": "small",
+                "customClass": "bord newFormMaking",
+                "ui": "element",
+                "layout": "horizontal",
+                "width": "100%",
+                "hideLabel": False,
+                "hideErrorMessage": False,
+                "eventScript": [],
+                "dataSource": [],
+            },
+        }
+
+        result = validate_form(payload, source="<memory>", strict=True)
+        self.assertTrue(result.ok)
+        self.assertTrue(any("JSON 字符串" in item for item in result.warnings))
+
+    def test_business_custom_component_requires_extend_props(self):
+        payload = {
+            "list": [
+                {
+                    "type": "custom",
+                    "name": "合同文件",
+                    "model": "legalDocTable",
+                    "key": "legalDocTable",
+                    "el": "legal-contract-doctable",
+                    "rules": [],
+                    "options": {
+                        "width": "100%",
+                        "hidden": False,
+                        "dataBind": True,
+                        "disabled": False,
+                        "customClass": "",
+                        "extendProps": {
+                            "isFlowInitiate": False,
+                            "businessId": "",
+                        },
+                    },
+                    "events": {"onChange": "", "onFocus": "", "onBlur": ""},
+                }
+            ],
+            "config": {
+                "labelWidth": 100,
+                "labelPosition": "left",
+                "size": "small",
+                "customClass": "bord newFormMaking",
+                "ui": "element",
+                "layout": "horizontal",
+                "width": "100%",
+                "hideLabel": False,
+                "hideErrorMessage": False,
+                "eventScript": [],
+                "dataSource": [],
+            },
+        }
+
+        result = validate_form(payload, source="<memory>", strict=True)
+        self.assertFalse(result.ok)
+        self.assertTrue(any("常用业务参数缺失" in item for item in result.errors))
+
+    def test_table_no_show_table_warns_for_input_table(self):
+        payload = {
+            "list": [
+                {
+                    "type": "table",
+                    "name": "费用明细",
+                    "model": "expenseDetailList",
+                    "key": "expenseDetailList",
+                    "rules": [],
+                    "options": {
+                        "defaultValue": [],
+                        "customClass": "tableNoPadding",
+                        "labelWidth": 100,
+                        "isLabelWidth": False,
+                        "hidden": False,
+                        "dataBind": True,
+                        "disabled": False,
+                        "required": True,
+                        "validatorCheck": False,
+                        "validator": "",
+                        "paging": False,
+                        "pageSize": 5,
+                        "isAdd": True,
+                        "isAlways": True,
+                        "isDelete": True,
+                        "showControl": True,
+                        "nestedHeader": False,
+                        "nestedHeaderName": "",
+                        "noShowTable": True,
+                        "tip": "",
+                    },
+                    "events": {
+                        "onMounted": "",
+                        "onChange": "",
+                        "onRowAdd": "",
+                        "onRowRemove": "",
+                        "onPageChange": "",
+                    },
+                    "tableColumns": [],
+                }
+            ],
+            "config": {
+                "labelWidth": 100,
+                "labelPosition": "left",
+                "size": "small",
+                "customClass": "bord newFormMaking",
+                "ui": "element",
+                "layout": "horizontal",
+                "width": "100%",
+                "hideLabel": False,
+                "hideErrorMessage": False,
+                "eventScript": [],
+                "dataSource": [],
+            },
+        }
+
+        result = validate_form(payload, source="<memory>", strict=True)
+        self.assertTrue(result.ok)
+        self.assertTrue(any("展示型表格" in item for item in result.warnings))
+
     def test_single_column_grid_wrapping_title_warns(self):
         payload = {
             "list": [

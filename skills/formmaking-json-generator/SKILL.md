@@ -20,6 +20,7 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - 需求里有明显布局要求、截图仿制、打印式表单或复杂分区时，再读 [references/layout-and-common-patterns.md](references/layout-and-common-patterns.md)。
 - 用户觉得“布局像了但样式、宽度、审批区还是不像现网”时，再读 [references/style-and-approval-patterns.md](references/style-and-approval-patterns.md)。
 - 需求涉及宿主自定义组件时，再读 [references/host-custom-components.md](references/host-custom-components.md)。
+  如果这次需求明显依赖宿主组件的值结构、虚拟字段、打印态或业务参数，再对照本地源码里的 `src/main.js`、`src/components/Custom/customJson.js`、对应组件 `index.vue`，以及 FormMaking 的 `src/components/GenerateElementItem.vue`、`componentsConfig.js`、`FormTable/index.vue`、`SubForm/index.vue`。
 - 需要找最接近的真实样本时，再读 [references/sample-index.md](references/sample-index.md)。
 - 生成完成后，优先用 [scripts/validate_form_json.py](scripts/validate_form_json.py) 校验。
 - 需要重新从一批 raw 样本学习壳层/样式/审批区规律时，运行 [scripts/analyze_sample_patterns.py](scripts/analyze_sample_patterns.py)。
@@ -86,6 +87,20 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - `eventScript`、`dataSource`、`styleSheets` 只在确实需要时补充，但 `eventScript` 建议始终保留数组结构。
 - `events` 里填的是事件脚本的 `key`，不是 `name`。
 - `custom` 组件必须带 `el`，必要时再补 `options.customProps`、`options.extendProps`、`events`。
+- 宿主运行时会把 `custom` 组件的 `options.customProps` 和 `options.extendProps` 一起透传给组件；通用展示参数如 `width`、`height`、`placeholder`、`readonly`、`disabled`、`editable`、`clearable`、`print-read` 由 FormMaking 统一透传。业务上下文参数不要误塞到错误层级。
+- 宿主高频自定义组件很多把 `value` 当 JSON 字符串处理，不是对象：
+  例如 `custome-info-select`、`general-list-select-show`、`general-flow-list-mulSelect`、`person-mulSelect`、`ltd-or-dep-select`。
+  给这些组件写默认值时，优先留空字符串或合法 JSON 字符串，不要直接塞对象/数组。
+- `custome-info-select` 依赖字段命名识别类型，`model` 应包含 `userName` / `depName` / `companyName` / `dutyName` 之一；
+  `ltd-or-dep-select` 依赖 `singleSelect` / `mulSelect` 识别单多选。
+  这类组件的 `model` 不能随便换成无语义英文。
+- 宿主高频选择类自定义组件往往会在选择后手动触发父表单 `validate()`，但这不等于可以省略 `rules`；
+  必填仍要配好 `options.required`、中文 `requiredMessage` 和 `rules`。
+- `table` / `subform` 的源码默认 `showControl: true`，会带出序号、控制列、删除按钮或新增入口。
+  正式制式表单、截图仿制、Word 固定分区如果不需要动态增删，优先不用它们，或者显式关掉 `showControl` / `isAdd` / `isDelete`。
+- `table.options.noShowTable` 只适合“无数据时整块隐藏”的展示型表格；需要用户主动录入、多行新增或必填校验的表格，默认不要开这个选项。
+- 宿主现网样式里 `showRedPot`、`tableNoPadding`、`approvalOpinion`、`autoAuditInfoField` 等类名主要在 `config.customClass` 包含 `newFormMaking` 时稳定生效。
+  如果要用这些宿主样式类，外层壳层优先带 `newFormMaking`，正式审批表通常是 `bord newFormMaking`。
 - 多附件上传不能只写“必填”；如果需求是“允许多个”，必须同时设置 `options.multiple = true` 和合适的 `options.limit`。
 - 当前运行时标准 `fileupload` 不透传文件类型限制，不能假设 `customProps.accept` 一定生效；需要扩展名强约束时，优先写校验说明或改用业务专属组件。
 - 需要表达式时使用 `{{ ... }}` 语法，不要把普通字符串和表达式混写成无法执行的值。

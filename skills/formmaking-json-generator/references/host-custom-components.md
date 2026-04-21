@@ -30,12 +30,34 @@
 - 强业务组件，只在需求明确对齐时才用
 - 零样本或极低频组件，不要主动发明用法
 - 这类选择组件大多把 `value` 当成 JSON 字符串处理；生成时优先给合法 JSON 默认值，不要直接留空字符串
+  但如果组件源码没有对空值做 `JSON.parse` 防守，就要优先提供可被解析的默认值或至少确保运行时第一次赋值前不会触发解析。
 
 从 178 份 raw 样本继续抽出来的补充结论：
 
 - `custome-info-select`、`general-list-select-show`、`custome-select-project` 这类高频组件，大多不依赖 `customProps` / `extendProps`；先把 `model`、默认值、事件脚本和外层布局配对好更重要。
 - 强业务组件里，`legal-contract-doctable` 是少数稳定依赖 `extendProps` 的组件；没有现成业务上下文时不要主动选它。
 - 很多高频组件的 `name` 在样本里都很泛，例如“通用信息选择”“通用列表选择”，因此正式表单里的业务语义通常来自外层 `report` 标签或分区标题，而不是组件自身名称。
+
+## 1.1 源码确认的运行契约
+
+注册链路：
+
+- 宿主在 `src/main.js` 通过 `Vue.use(FormMaking, { components: [...] })` 注入自定义组件
+- FormMaking `src/index.js` 会把这些组件名直接 `Vue.component(name, component)` 注册到运行时
+- 渲染 `custom` 节点时，`GenerateElementItem.vue` 会把以下内容透传给宿主组件：
+  - `v-model`
+  - 通用 props：`width`、`height`、`placeholder`、`readonly`、`disabled`、`editable`、`clearable`、`print-read`
+  - 合并后的 `options.customProps + options.extendProps`
+  - `events` 映射出来的动态事件回调
+
+生成启发：
+
+- 自定义组件是否能跑，核心不只是 `el` 名字对不对，还包括：
+  `model` 命名、`value/defaultValue` 形态、`customProps` / `extendProps` 层级、是否需要 `events.onChange`。
+- 宿主很多样式类依赖表单壳层的 `newFormMaking`：
+  `showRedPot`、`tableNoPadding`、`approvalOpinion`、`autoAuditInfoField`。
+  如果生成 JSON 用到了这些类，而 `config.customClass` 没有 `newFormMaking`，最终效果常常和现网页面不一致。
+- `customJson.js` 里的默认配置比样本名更可信，尤其适合确认业务组件默认 `extendProps`、`customClass` 和事件壳子。
 
 ## 2. 选择顺序
 
@@ -66,6 +88,7 @@
 
 - `value` 是 JSON 字符串
 - 组件运行时会读取其中的 `name`、`id`
+- 打印/阅读态走 `printRead` 分支，直接展示 `name`
 
 额外副作用：
 
@@ -93,6 +116,7 @@ raw 样本补充：
 参考源码：
 
 - `{host_project}/src/components/Custom/components/CustomeInfoSelect/index.vue`
+- `{host_project}/src/components/Custom/customJson.js`
 
 ### `general-list-select-show`
 
@@ -105,6 +129,7 @@ raw 样本补充：
 - `value` 是 JSON 字符串
 - 常见字段：
   `name`、`rowData`、`formType`、`selectCompanyId`
+- 打印/阅读态会直接展示 `name`
 
 隐含逻辑：
 
@@ -125,6 +150,7 @@ raw 样本补充：
   `contractObj` 最常见，其次是若干业务流程对象字段。
 - 组件 `name` 基本都写成“通用列表选择”，说明业务标签通常由外层单元格提供。
 - 常见 `onChange` 事件会在选择对象后带出项目、金额、主体等信息；如果需求里出现“关联合同/流程后回填一组字段”，优先考虑它。
+- 组件本身在选择完成后会主动触发父表单 `validate()`；因此必填校验可正常刷新，但前提仍然是字段本身写了 `rules`。
 
 参考源码：
 
@@ -166,6 +192,7 @@ raw 样本补充：
 值形态：
 
 - `value` 通常是 JSON 字符串数组
+- 打印/阅读态会把数组中的 `name` 用中文顿号拼接展示
 
 适合场景：
 
@@ -192,6 +219,8 @@ raw 样本补充：
 
 - 差旅等场景会先检查某些字段是否已选，例如报销单位
 - 选择完成后会触发变更并重新校验表单
+- 这个组件更像“按钮入口 + 自定义事件载荷”，源码里显式触发的是 `$emit('onChange', data)`；
+  如果要靠它带出后续字段，通常要配 `events.onChange`
 
 适合场景：
 
@@ -219,15 +248,53 @@ raw 样本补充：
   `this.setData({ flowObj: JSON.stringify({ flowType: 'xxx' }) })`
 - 组件内部展示 `flowList`
 - 每条已选流程都可查看详情
+- 选择完成后会主动触发父表单 `validate()`
 
 适合场景：
 
 - 关联合同前序流程
 - 关联多个固定流程类型单据
 
+值形态：
+
+- `value` 是 JSON 字符串
+- 真实数据通常长成：
+  `{"flowList":[{"id":"...","name":"...","rowData":"..."}]}`
+
 参考源码：
 
 - `{host_project}/src/components/Custom/components/GeneralFlowListMulSelect/index.vue`
+
+### `person-mulSelect`
+
+用途：
+
+- 多选人员，并保留顺序
+
+值形态：
+
+- `value` 是 JSON 字符串
+- 常见结构：
+  `{"flowList":[{"id":"...","name":"..."}]}`
+
+额外副作用：
+
+- 会向表单数据写入 `<model>__formPersonId`
+- 拖拽排序后会重新回写整个 `flowList`
+
+适合场景：
+
+- 指定表单人员
+- 多人会签候选人
+- 需要排序的人员列表
+
+注意：
+
+- 虽然历史 raw 样本很少，但源码契约已经比较明确；如果需求明确是“人员多选 + 需要 id 虚拟字段”，可以用，不必因为样本少就完全回避。
+
+参考源码：
+
+- `{host_project}/src/components/Custom/components/PersonMulSelect/index.vue`
 
 ### `custome-file-import`
 
@@ -266,9 +333,16 @@ raw 样本补充：
 - `businessId`
 - `companyId`
 - `isFlowInitiate`
+- `pageTemplateId`
+- `formPage`
 - `isExamine`
 - `isReInitiate`
 - `isTranspondFlow`
+
+样式注意：
+
+- 宿主 `customJson.js` 默认给它配了 `options.customClass = "tableNoPadding"`
+- 正式表单如果漏掉这个类，常会出现内外边距、边框和现网页面不一致
 
 优先参考：
 
@@ -293,6 +367,9 @@ raw 样本补充：
 
 - `businessId`
 - `isFlowInitiate`
+- `companyId`
+- `isExamine`
+- `isReInitiate`
 
 优先参考：
 
@@ -302,6 +379,7 @@ raw 样本补充：
 
 - 3 个样本里 `model` 固定为 `custom_contractSealField`，并且几乎不靠组件 `name` 表达业务语义。
 - 这是典型强业务块，不要当通用组件推广。
+- `customJson.js` 暴露的 `extendProps` 比组件当前显式声明的 props 更多；如果以后要生成它，优先以本地样本和当前分支源码共同确认，不要只看一个文件就硬下结论。
 
 ## 5. 低频或谨慎使用组件
 
@@ -353,5 +431,7 @@ raw 样本补充：
 注意：
 
 - `extendProps` 更适合放宿主业务参数，例如 `businessId`、`companyId`、`isFlowInitiate`
+- 这类高频宿主组件很多把值当 JSON 字符串处理；`options.defaultValue` 如需填写，优先给空字符串或合法 JSON 字符串，而不是对象/数组
 - 若组件源码依赖字段命名约定，`model` 不能随便换成无语义名字
 - 自定义组件如果会触发表单联动，记得补 `events.onChange`
+- 若用了 `showRedPot`、`tableNoPadding`、`approvalOpinion` 这类宿主样式类，外层 `config.customClass` 记得包含 `newFormMaking`

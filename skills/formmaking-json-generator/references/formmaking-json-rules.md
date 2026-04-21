@@ -78,6 +78,8 @@
 - 宿主运行时 `.fm-form` 本身带 `margin: 0 auto`，所以固定宽度更容易得到“整体居中、轮廓完整”的正式审批表效果。
 - 如果这类表单错误地使用 `config.width = "100%"`，常见结果是表单过宽、视觉重心发散，或和截图样式不一致。
 - 如果用户给的是蓝湖或截图，图上的红字默认先按“批注/提示”理解，不要直接把正式表单标签或回填值渲染成红色。
+- 宿主现网页面里很多正式表单样式依赖 `config.customClass` 带 `newFormMaking`。
+  如果字段上用了 `showRedPot`、`tableNoPadding`、`approvalOpinion`、`autoAuditInfoField` 这类宿主 class，而外层壳层没有 `newFormMaking`，最终效果通常会偏离现网。
 
 ## 3. 高频组件类型
 
@@ -197,6 +199,22 @@
 }
 ```
 
+源码默认项（`componentsConfig.js`）：
+
+- `showControl: true`
+- `isAdd: true`
+- `isDelete: true`
+- `paging: false`
+- `nestedHeader: false`
+- `nestedHeaderName: ""`
+- `noShowTable: false`
+
+运行时启发（`FormTable/index.vue`）：
+
+- `showControl` 会额外渲染控制列、删除按钮和标识位，不适合截图仿制型制式表单
+- `nestedHeader: true` 时应同步提供 `nestedHeaderName`
+- `noShowTable: true` 只适合“有值才展示”的显示型表格；录入型/必填型表格默认不要开
+
 ### `subform`
 
 适合重复块，不只是“表格行”。
@@ -210,6 +228,18 @@
   "list": []
 }
 ```
+
+源码默认项（`componentsConfig.js`）：
+
+- `showControl: true`
+- `isAdd: true`
+- `isDelete: true`
+- `paging: false`
+
+运行时启发（`SubForm/index.vue`）：
+
+- `showControl` 会渲染蓝色编号 tag、删除按钮和新增入口
+- 所以固定的 Word 分区、固定“一、二、三”业务段，不要因为内容长得像重复块就套 `subform`
 
 ### 其他递归容器
 
@@ -289,6 +319,7 @@
 - 系统回填值、原合同/原流程带出值、自动计算结果，优先用 `disabled: true`，让宿主按灰底灰字渲染。
 - 不要为了强调这些回填字段而额外写红色高亮样式；正式表单正文、标签、回填值默认都应保持宿主常规配色。
 - 正式表格型表单的必填标签，优先用宿主现成的 `showRedPot` 样式思路显示红色星号，不建议把 `*` 手写进标签文本。
+- 如果使用 `showRedPot`、`approvalOpinion`、`tableNoPadding`、`autoAuditInfoField` 等宿主样式类，外层 `config.customClass` 也要带 `newFormMaking`，否则类名可能挂上了但页面效果不对。
 - 运行时实际使用节点的 `rules` 生成 Element 表单校验；新生成字段时，`options.required = true` 必须同步配 `rules: [{"required": true, "message": "中文提示"}]` 或 `rules[].func` 自定义校验。
 - 所有校验提示必须是中文，包括 `requiredMessage`、`rules[].message`、自定义校验里的 `callback("...")`。
 
@@ -506,6 +537,13 @@
   `value`、`width`、`height`、`placeholder`、`readonly`、`disabled`、`editable`、`clearable`、`print-read`
 - `options.customProps` 和 `extendProps` 会一起透传给组件。
 - `events` 会被包装成运行时回调，并调用对应 `eventScript`。
+- 宿主高频自定义组件里，很多 `value/defaultValue` 实际上是 JSON 字符串，不是对象：
+  `custome-info-select`、`general-list-select-show`、`general-flow-list-mulSelect`、`person-mulSelect`、`ltd-or-dep-select` 都是高频例子。
+- 某些宿主组件对 `model` 名称有硬约束：
+  `custome-info-select` 需要 `model` 包含 `userName` / `depName` / `companyName` / `dutyName`；
+  `ltd-or-dep-select` 需要 `model` 包含 `singleSelect` / `mulSelect`。
+- `legal-contract-doctable` 这类强业务组件还依赖 `extendProps`，并且默认建议带 `tableNoPadding`；
+  业务上下文不完整时宁可退回普通字段，也不要硬猜。
 
 ## 12. 表格、子表单、上传的选择建议
 

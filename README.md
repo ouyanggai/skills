@@ -16,13 +16,18 @@ npx skills add ouyanggai/skills
 npx skills add https://github.com/ouyanggai/skills --skill formmaking-json-generator
 ```
 
-安装后，在支持 skills 的客户端里直接调用 `formmaking-json-generator` 即可。
+```bash
+npx skills add https://github.com/ouyanggai/skills --skill noform-flow-generator
+```
+
+安装后，在支持 skills 的客户端里直接调用对应 skill 即可。
 
 ## 当前技能
 
 | Skill | 说明 |
 | --- | --- |
 | `formmaking-json-generator` | 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMaking 表单 JSON |
+| `noform-flow-generator` | 为 rsh-cloud 宿主平台生成、改写、审查和解释无表单流程代码 |
 
 ## 目录结构
 
@@ -33,8 +38,14 @@ skills/
     agents/openai.yaml
     references/
     scripts/
+  noform-flow-generator/
+    SKILL.md
+    agents/openai.yaml
+    references/
+    scripts/
 tests/
   formmaking-json-generator/
+  noform-flow-generator/
 scripts/
   check.py
 ```
@@ -63,6 +74,12 @@ python3 skills/formmaking-json-generator/scripts/inspect_docx_tables.py path/to/
 
 ```bash
 python3 skills/formmaking-json-generator/scripts/analyze_sample_patterns.py --workspace .
+```
+
+盘点宿主项目里的无表单流程组件、配置、API 映射和流程库入口：
+
+```bash
+python3 skills/noform-flow-generator/scripts/inspect_noform_host.py --workspace .
 ```
 
 ## 新环境首次使用

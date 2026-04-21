@@ -6,6 +6,11 @@
       "name": "formmaking-json-generator",
       "path": "skills/formmaking-json-generator",
       "description": "生成、改写、审查和解释 rsh-cloud FormMaking 表单 JSON"
+    },
+    {
+      "name": "noform-flow-generator",
+      "path": "skills/noform-flow-generator",
+      "description": "生成、改写、审查和解释 rsh-cloud 宿主项目里的无表单流程代码"
     }
   ]
 }

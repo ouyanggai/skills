@@ -1,0 +1,3 @@
+interface:
+  display_name: "无表单流程生成"
+  short_description: "根据宿主项目规则生成或修改无表单流程代码"

@@ -19,6 +19,8 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - 需求来源是 Word、截图、PDF 截图或“照这个表做”时，先读 [references/word-source-conversion.md](references/word-source-conversion.md)；如果是 `.docx`，先运行 [scripts/inspect_docx_tables.py](scripts/inspect_docx_tables.py) 提取表格台账。
 - 需求里有明显布局要求、截图仿制、打印式表单或复杂分区时，再读 [references/layout-and-common-patterns.md](references/layout-and-common-patterns.md)。
 - 用户觉得“布局像了但样式、宽度、审批区还是不像现网”时，再读 [references/style-and-approval-patterns.md](references/style-and-approval-patterns.md)。
+- 需求涉及字段联动、远程下拉、动态值、显隐禁用、回填脚本或“选了 A 自动带出 B/C/D”时，再读 [references/event-and-datasource-patterns.md](references/event-and-datasource-patterns.md)。
+  需要先从当前工作区的真实样本重新学习事件脚本和数据源分布时，先运行 [scripts/analyze_behavior_patterns.py](scripts/analyze_behavior_patterns.py)。
 - 需求涉及宿主自定义组件时，再读 [references/host-custom-components.md](references/host-custom-components.md)。
   需要先快速盘点“当前这个宿主分支到底注册了哪些组件、值形态是什么、哪些组件有虚拟字段或强业务参数”时，先运行 [scripts/inspect_host_components.py](scripts/inspect_host_components.py)。
   如果这次需求明显依赖宿主组件的值结构、虚拟字段、打印态或业务参数，再对照本地源码里的 `src/main.js`、`src/components/Custom/customJson.js`、对应组件 `index.vue`，以及 FormMaking 的 `src/components/GenerateElementItem.vue`、`componentsConfig.js`、`FormTable/index.vue`、`SubForm/index.vue`。
@@ -50,6 +52,7 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
    正式审批表、截图仿制、制式台账类表单，默认优先考虑“顶层 `text` 标题 + 顶层 `report` 分区”；不要下意识先套一层单列 `grid`。
 4. 选择组件实现路径。
    优先原生字段；只有当宿主组件明显更合适，或者需求明确指向业务组件时，才使用 `custom` 组件。
+   如果需求同时包含字段联动、远程下拉或动态默认值，先决定哪些逻辑放 `eventScript`，哪些放 `dataSource` / `remoteDataSource` / `dynamicValue*`，不要全部硬塞进字段默认值。
 5. 组装 JSON。
    保持 `list + config` 结构完整，`model` 用语义化英文名，`key` 保证唯一，事件和数据源引用要对得上。
 6. 校验与修正。

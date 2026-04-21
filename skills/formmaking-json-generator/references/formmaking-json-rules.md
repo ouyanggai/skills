@@ -52,6 +52,7 @@
 
 - `eventScript` 建议始终保留数组，便于后续追加联动。
 - `dataSource`、`styleSheets` 可按需补充。
+- 一旦需求涉及字段联动、远程下拉、动态值、显隐禁用或对象回填，先同时参考 [event-and-datasource-patterns.md](event-and-datasource-patterns.md)，不要把行为层逻辑偷换成静态 `defaultValue`。
 - `platform` 在个别样本中出现，例如 `pad`，只有需求明确时再加。
 - 上面这套骨架更适合通用表单，不是所有正式审批表都用 `config.width = "100%"`。
 - 对合同、法务、制式审批单这类“表格主骨架”表单，真实样本更常见的是：

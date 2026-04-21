@@ -87,6 +87,18 @@ class DiscoverContextTests(unittest.TestCase):
             self.assertIn("FormMaking 源码目录", payload["missing"])
             self.assertIn("生成的 JSON 保存目录", payload["missing"])
 
+    def test_sample_dir_is_optional_and_has_note(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            workspace = Path(tmp)
+
+            with redirect_stdout(StringIO()) as stdout:
+                exit_code = main(["--workspace", str(workspace), "--print-only"])
+
+            self.assertEqual(exit_code, 0)
+            payload = json.loads(stdout.getvalue())
+            self.assertEqual(len(payload["missing"]), 3)
+            self.assertTrue(any("sample_dir" in note for note in payload["notes"]))
+
     def test_permission_denied_paths_are_skipped(self):
         with patch.object(Path, "exists", side_effect=PermissionError):
             self.assertFalse(safe_exists(Path("/locked")))

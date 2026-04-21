@@ -88,4 +88,6 @@ python3 skills/formmaking-json-generator/scripts/discover_context.py \
 python3 skills/formmaking-json-generator/scripts/discover_context.py --workspace .
 ```
 
-如果有历史真实表单 JSON 样本目录，可额外加 `--sample-dir /path/to/form-json-samples`，便于生成时参考真实表单规律。脚本会把本地配置保存到 `.formmaking-json-generator/context.json`，这个文件不会提交。
+如果有历史真实表单 JSON 样本目录，可额外加 `--sample-dir /path/to/form-json-samples`，便于生成时参考真实表单规律。
+这一项只属于当前使用者本机的本地增强输入，不是安装 skill 后的必填前置；没有它，skill 也应继续依靠宿主源码、FormMaking 源码、用户需求和校验脚本完成生成。
+脚本会把本地配置保存到 `.formmaking-json-generator/context.json`，这个文件不会提交。

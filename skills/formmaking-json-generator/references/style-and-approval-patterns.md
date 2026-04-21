@@ -1,6 +1,7 @@
 # 样式与审批区规律
 
-下面规律来自当前 `analysis/form-proxy-samples/raw` 178 份真实样本的统计。换一批样本后，可重新运行 `scripts/analyze_sample_patterns.py` 刷新判断。
+下面规律来自“当前使用者本机可访问的 `analysis/form-proxy-samples/raw` 样本”统计。
+它属于本地增强学习结果，不代表其他环境也有同一批样本；换一批样本后，或者新环境没有样本时，应把本文当作启发式参考，而不是硬编码约束。
 
 ## 1. 表单壳层
 

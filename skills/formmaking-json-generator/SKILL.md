@@ -27,15 +27,18 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 - 需要找最接近的真实样本时，再读 [references/sample-index.md](references/sample-index.md)。
 - 生成完成后，优先用 [scripts/validate_form_json.py](scripts/validate_form_json.py) 校验。
 - 需要重新从一批 raw 样本学习壳层/样式/审批区规律时，运行 [scripts/analyze_sample_patterns.py](scripts/analyze_sample_patterns.py)。
+- 如果当前机器没有 raw 样本，就跳过样本分析脚本，不要把“跑不了分析脚本”误判成“skill 不能生成表单”。
 
 ## 本地上下文
 
 - 不要把某个人机器上的绝对路径写进生成逻辑或 skill 文档。
+- `raw` / 历史样本目录只属于当前使用者本机的本地增强输入，不能把它当成分发后的通用前置条件，也不能默认其他同事机器上存在同一批样本。
 - 默认从当前工作区开始查找：
   `rsh-cloud-invest-power-system*` 宿主工程、`vue-form-making`/`form-making` 源码、`analysis/form-proxy-samples/raw` 样本目录。
 - 自动发现失败时，优先用使用者能理解的话询问必要信息：
   全过程管理平台的目录（你的开发目录）、FormMaking 源码目录、生成的 JSON 保存目录。
 - 真实样本目录是增强项，不是第一轮必须项；如果使用者已有历史表单 JSON 样本，再询问样本目录用于学习规律。
+- 没有样本目录时，仍然要继续完成生成：优先依据宿主源码、FormMaking 源码、用户给出的字段/截图/Word、以及 `validate_form_json.py` 做闭环，不要因为缺少 raw 就停住。
 - 发现结果保存在当前工作区的 `.formmaking-json-generator/context.json`。
   这是使用者本机配置，不应作为 skill 内容传播。
 - 生成时优先使用本地上下文中的路径；没有上下文时，仍可只依赖用户给出的字段和本 skill 的通用规则生成基础 JSON，并把产物保存到用户指定的 JSON 保存目录。

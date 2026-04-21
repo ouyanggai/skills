@@ -191,7 +191,7 @@ def main(argv: list[str] | None = None) -> int:
         default="",
         help="生成的 JSON 保存目录",
     )
-    parser.add_argument("--sample-dir", default="", help="可选：真实表单 JSON 样本目录")
+    parser.add_argument("--sample-dir", default="", help="可选：当前使用者本机的真实表单 JSON 样本目录")
     parser.add_argument("--print-only", action="store_true", help="只输出发现结果，不写入 context.json")
     args = parser.parse_args(argv)
 
@@ -214,6 +214,9 @@ def main(argv: list[str] | None = None) -> int:
         "context_file": str(config_file),
         "context": context,
         "missing": missing_items(context),
+        "notes": [
+            "sample_dir 只用于当前使用者本机的本地增强学习，可为空；skill 分发或迁移到其他环境时不能默认存在。"
+        ],
     }
 
     if not args.print_only:

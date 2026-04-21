@@ -1,6 +1,9 @@
 # 事件脚本与数据源规律
 
-这份总结基于本地 `raw` 样本和 FormMaking 源码的共同结论。需要重新统计时，运行：
+这份总结基于“当前使用者本机可访问的 `raw` 样本 + FormMaking 源码”的共同结论。
+它是本地增强学习材料，不是 skill 分发后的通用前置条件；如果换到没有样本的新环境，应把本文当作启发式参考，优先再结合宿主源码、FormMaking 源码和实际需求落地。
+
+需要重新统计时，运行：
 
 ```bash
 python3 skills/formmaking-json-generator/scripts/analyze_behavior_patterns.py --workspace .

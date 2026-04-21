@@ -213,7 +213,11 @@ def main(argv: list[str] | None = None) -> int:
 
     sample_dir = resolve_sample_dir(args)
     if sample_dir is None:
-        print("[ERROR] 未找到样本目录，请传入 --sample-dir 或先配置 context.json", file=sys.stderr)
+        print(
+            "[ERROR] 未找到样本目录；raw 样本仅用于当前使用者本机的本地增强学习。"
+            "如果你只是要生成或校验表单，可以跳过这个分析脚本。",
+            file=sys.stderr,
+        )
         return 2
     if not sample_dir.exists():
         print(f"[ERROR] 样本目录不存在: {sample_dir}", file=sys.stderr)

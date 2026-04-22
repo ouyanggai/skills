@@ -1,6 +1,6 @@
 ---
 name: formmaking-json-generator
-description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMaking 表单 JSON。适用于用户给出业务需求、字段清单、流程场景、现有模板或参考样例，希望产出或修复可直接写入 `t_form_proxy.template_data` 的 JSON；也适用于需要挑选宿主已注入的自定义组件、补齐事件脚本/数据源/动态联动的场景。不适用于无表单流程或 NoFormFlow。
+description: 为 rsh-cloud 宿主平台生成和解释 FormMaking 表单 JSON。适用于用户给出业务需求、字段清单、流程场景、现有模板或参考样例，希望产出可直接写入 `t_form_proxy.template_data` 的 JSON；也适用于需要挑选宿主已注入的自定义组件、补齐事件脚本/数据源/动态联动的新表单搭建场景。不适用于既有 JSON 的 bug 修复/问题排查，也不适用于无表单流程或 NoFormFlow。
 ---
 
 # FormMaking JSON 生成
@@ -8,6 +8,7 @@ description: 为 rsh-cloud 宿主平台生成、改写、审查和解释 FormMak
 ## 适用边界
 
 - 只处理“有表单流程”的 FormMaking JSON。
+- 面向“新建表单”或“按需求重新生成表单”的场景；既有 JSON 的 bug 修复、联动排查、运行时挑战，交给独立的 repair skill。
 - 宿主工程通常是 `rsh-cloud-invest-power-system*` 的某个本地分支或目录，它的作用是提供自定义组件、全局能力、接口鉴权与运行约束。
 - `NoFormFlow` 明确排除；不要把两套产物混在同一份 JSON 里。
 

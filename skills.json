@@ -5,7 +5,12 @@
     {
       "name": "formmaking-json-generator",
       "path": "skills/formmaking-json-generator",
-      "description": "生成、改写、审查和解释 rsh-cloud FormMaking 表单 JSON"
+      "description": "生成和解释 rsh-cloud FormMaking 表单 JSON"
+    },
+    {
+      "name": "formmaking-json-repair",
+      "path": "skills/formmaking-json-repair",
+      "description": "修复、改写、排查和挑战 rsh-cloud FormMaking 表单 JSON"
     },
     {
       "name": "noform-flow-generator",
